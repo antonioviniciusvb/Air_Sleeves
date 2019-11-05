@@ -7,7 +7,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Air_Sleeves"
         mc:Ignorable="d"
-        Title="Air Sleeves - Master" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+        Title="Air Sleeves - Teste
+                      " WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Grid>
         
     </Grid>
