@@ -4,12 +4,47 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:views="clr-namespace:Air_Sleeves.Views"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Air_Sleeves"
         mc:Ignorable="d"
-        Title="Air Sleeves - Teste
-                      " WindowState="Maximized" WindowStartupLocation="CenterScreen">
-    <Grid>
-        
+        Title="Air Sleeves - Teste"
+        WindowState="Maximized" WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <!--<Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="7*"></RowDefinition>
+        </Grid.RowDefinitions>-->
+
+        <Controls:MetroAnimatedTabControl  Controls:TabControlHelper.Underlined="TabItems">
+            <TabItem Header="Simulador">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="8*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Row="0" Margin="10">
+                        <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Controls:NumericUpDown Value="{Binding Camisas.Interna, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Medida Interna (mm)" ToolTip="MEDIDA INTERNA"></Controls:NumericUpDown>
+                            <Controls:NumericUpDown Value="{Binding Camisas.Externa, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Medida Externa (mm)" Margin="10,0,0,0" ToolTip="MEDIDA EXTERNA"></Controls:NumericUpDown>
+                            <Controls:NumericUpDown Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Comprimento (mm)" ToolTip="COMPRIMENTO" Margin="10,0,0,0"></Controls:NumericUpDown>
+                            <Controls:NumericUpDown Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Comprimento adicional (%)" ToolTip="COMPRIMENTO ADICIONAL" Margin="10,0,0,0"></Controls:NumericUpDown>
+                            <Controls:NumericUpDown Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Total de Peças (unidade)" ToolTip="QNTD PEÇAS" Margin="10,0,0,0"></Controls:NumericUpDown>
+                            <Button Margin="20,0,0,0" ToolTip="INICIAR SIMULAÇÃO" Content="Iniciar" VerticalAlignment="Stretch" HorizontalAlignment="Center"></Button>
+                        </DockPanel>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <Controls:MetroTabItem Header="Gerenciamento" BorderBrush="#FF153737">
+                <Grid Background="#FF153737">
+                    <views:Gerenciamento></views:Gerenciamento>
+                </Grid>
+            </Controls:MetroTabItem>
+        </Controls:MetroAnimatedTabControl>
+
     </Grid>
+
+
 </Controls:MetroWindow>
