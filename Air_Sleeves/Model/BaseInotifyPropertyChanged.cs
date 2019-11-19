@@ -1,5 +1,11 @@
 ﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
+using System.Linq;
+using System.Text;
+using PropertyChanged;
+using System.Threading.Tasks;
+using Air_Sleeves.Util;
+using System.Collections.Generic;
+using System;
 
 namespace Air_Sleeves.Model
 {
@@ -7,9 +13,9 @@ namespace Air_Sleeves.Model
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
+        //public void RaisePropertyChanged([CallerMemberName] string propertyName = null)
+        //{
+        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        //}
     }
 }

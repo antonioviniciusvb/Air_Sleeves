@@ -103,15 +103,22 @@
     </ApplicationDefinition>
     <Compile Include="Dal\DalHelper.cs" />
     <Compile Include="Dal\EfContext.cs" />
+    <Compile Include="Model\Acabamento.cs" />
     <Compile Include="Model\Camisa.cs" />
     <Compile Include="Model\Cliente.cs" />
     <Compile Include="Model\BaseInotifyPropertyChanged.cs" />
     <Compile Include="Model\ClienteWrap.cs" />
+    <Compile Include="Model\DetalhesMaterial.cs" />
+    <Compile Include="Model\Eva.cs" />
+    <Compile Include="Model\Filamento.cs" />
+    <Compile Include="Model\Peça.cs" />
     <Compile Include="Model\Und_Medida.cs" />
     <Compile Include="Model\Material.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Ferramentas\Util.cs" />
     <Compile Include="Util\Calculo.cs" />
+    <Compile Include="Util\Validacao.cs" />
+    <Compile Include="ViewModel\Command.cs" />
     <Compile Include="ViewModel\VieModel.cs" />
     <Compile Include="Views\Gerenciamento.xaml.cs">
       <DependentUpon>Gerenciamento.xaml</DependentUpon>
