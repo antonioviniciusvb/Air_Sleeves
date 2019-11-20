@@ -18,6 +18,8 @@ using Air_Sleeves.Dal;
 using Air_Sleeves.Model;
 using System.Diagnostics;
 using System.Text.RegularExpressions;
+using System.Windows.Markup;
+using System.Globalization;
 
 namespace Air_Sleeves
 {
@@ -32,6 +34,9 @@ namespace Air_Sleeves
 
         public MainWindow()
         {
+            //Setando a culture atual
+            this.Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
+
             InitializeComponent();
             //DalHelper.CriarBancoSQLite();
             //DalHelper.CriarTabelaSQlite();

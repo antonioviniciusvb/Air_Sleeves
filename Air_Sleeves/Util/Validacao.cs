@@ -10,7 +10,7 @@ namespace Air_Sleeves.Util
     {
         public static bool Camisa_1(Camisa c)
         {
-            return c.Interna > 0 && c.Externa  >= c.Interna + 2 && c.Comprimento > 0;
+            return c.Externa - c.Interna > 1 && c.Interna > 0 && c.Externa > 0 && c.Comprimento > 0;
         } 
 
     }

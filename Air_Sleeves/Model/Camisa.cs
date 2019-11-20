@@ -28,24 +28,22 @@ namespace Air_Sleeves.Model
 
         public decimal Comprimento { get; set; }
 
+
         private void OnInternaChanged()
         {
-            if (Interna < 0)
+            if (Interna <= 0)
                 Interna = 0;
         }
 
         private void OnExternaChanged()
         {
-            if (Externa < 0)
+            if (Externa <= 0)
                 Externa = 0;
-
-            if (Externa - Interna <= 1)
-                Externa = Interna + 2;
         }
 
         private void OnComprimentoChanged()
         {
-            if (Comprimento < 0)
+            if (Comprimento <= 0)
                 Comprimento = 0;
         }
 
@@ -57,6 +55,12 @@ namespace Air_Sleeves.Model
 
             this.Metros_Cadarco = Math.Ceiling((Calculo.pi * parametro_2 * (this.Comprimento / 32)) / parametro_3);
         }
+
+        //private void Calc_Qntd_Bobinas()
+        //{
+        //    //há 50 metros de cardaço por bobina
+        //    this.Bobinas_Cadarco = Math.Round(this.Metros_Cadarco / 50, 2);
+        //}
 
         private void Calc_Peso_Cadarco()
         {
@@ -81,6 +85,7 @@ namespace Air_Sleeves.Model
             Calc_MetrosCadarco();
             Calc_Peso_Cadarco();
             Calc_Preco_Cadarco();
+            //Calc_Qntd_Bobinas();
         }
 
         private void Calc_Composto()
@@ -88,11 +93,11 @@ namespace Air_Sleeves.Model
             //Tenho que verificar pq muda da 3º camisa para as demais
             decimal fatorComposto = num_Camisa != 3 ? 0.006M : 0.02M;
             this.Composto_Resina = Calculo.Multiplica(this.Metros_Cadarco, fatorComposto, 3);
-            this.Peso_Total = Peso_Total + Composto_Resina;
         }
 
         public void Calc_Valores_Camisa()
         {
+            limpaTotais();
             Calc_Valores_Cadarco();
             Calc_Composto();
             Calc_Itens();

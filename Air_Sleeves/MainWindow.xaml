@@ -20,509 +20,507 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0">
                         <DockPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                            <Controls:NumericUpDown Value="{Binding Camisas_1.Interna, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Medida Interna (mm)" ToolTip="MEDIDA INTERNA"></Controls:NumericUpDown>
-                            <Controls:NumericUpDown Value="{Binding Camisas_1.Externa, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Medida Externa (mm)" Margin="10,0,0,0" ToolTip="MEDIDA EXTERNA"></Controls:NumericUpDown>
-                            <Controls:NumericUpDown Value="{Binding Camisas_1.Comprimento, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Comprimento (mm)" ToolTip="COMPRIMENTO" Margin="10,0,0,0"></Controls:NumericUpDown>
-                            <Controls:NumericUpDown Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Comprimento adicional (%)" ToolTip="COMPRIMENTO ADICIONAL" Margin="10,0,0,0"></Controls:NumericUpDown>
-                            <Controls:NumericUpDown Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Total de Peças (unidade)" ToolTip="QNTD PEÇAS" Margin="10,0,0,0"></Controls:NumericUpDown>
+                            <Controls:NumericUpDown Value="{Binding Peca.Camisas_1.Interna, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Medida Interna (mm)" ToolTip="MEDIDA INTERNA"></Controls:NumericUpDown>
+                            <Controls:NumericUpDown Value="{Binding Peca.Camisas_1.Externa, ValidatesOnDataErrors=True, NotifyOnValidationError=True}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Medida Externa (mm)" Margin="10,0,0,0" ToolTip="MEDIDA EXTERNA"></Controls:NumericUpDown>
+                            <Controls:NumericUpDown Value="{Binding Peca.Camisas_1.Comprimento, ValidatesOnDataErrors=True, NotifyOnValidationError=True}"  Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Comprimento (mm)" ToolTip="COMPRIMENTO" Margin="10,0,0,0"></Controls:NumericUpDown>
                             <Button Margin="10,0,0,0" Command="{Binding ExecutaSimulacao}" ToolTip="INICIAR SIMULAÇÃO" Content="Iniciar" VerticalAlignment="Stretch" HorizontalAlignment="Center"></Button>
                         </DockPanel>
                     </Grid>
-                    
-                    <Grid Grid.Row="1" Margin="0,10,0,0" >
+
+                    <Grid Grid.Row="1" Grid.Column="0" Margin="0,10,0,0" >
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="6*"></ColumnDefinition>
                             <ColumnDefinition Width="4*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <ScrollViewer  Controls:ScrollViewerHelper.IsHorizontalScrollWheelEnabled="True">
-                        <Grid Grid.Row="0">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="15"></RowDefinition>
-                                <RowDefinition Height="20"></RowDefinition>
-                                <RowDefinition Height="110"></RowDefinition>
-                                <RowDefinition Height="15"></RowDefinition>
-                                <RowDefinition Height="45"></RowDefinition>
-                                <RowDefinition Height="15"></RowDefinition>
-                                <RowDefinition Height="20"></RowDefinition>
-                                <RowDefinition Height="90"></RowDefinition>
-                                <RowDefinition Height="15"></RowDefinition>
-                                <RowDefinition Height="20"></RowDefinition>
-                                <RowDefinition Height="105"></RowDefinition>
-                                <RowDefinition Height="15"></RowDefinition>
-                                <RowDefinition Height="120"></RowDefinition>
-                                <RowDefinition Height="15"></RowDefinition>
-                                <RowDefinition Height="130"></RowDefinition>
-                            </Grid.RowDefinitions>
-
-                            <TextBlock TextAlignment="Center" Grid.Row="0" Grid.Column="0" Background="AntiqueWhite" FontWeight="Bold">1º CAMISA</TextBlock>
-
-                            <DockPanel  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock>Interna:</TextBlock>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Camisas_1.Interna}"></TextBlock>
-                                <TextBlock Margin="10,0,0,0">Externa:</TextBlock>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Camisas_1.Externa}"></TextBlock>
-                                <TextBlock Margin="10,0,0,0">Comprimento:</TextBlock>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Camisas_1.Comprimento}"></TextBlock>
-                            </DockPanel>
-
-                            <Grid x:Name="grdCamisa_1"  Margin="0,5,0,0" Grid.Row="2">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                
-                                <StackPanel Grid.Column="0">
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">CADARÇO</TextBlock>
-
-                                    <DockPanel>
-                                        <TextBlock Width="70" TextAlignment="Right">Metros:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Camisas_1.Metros_Cadarco, StringFormat={}{0} m}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="70" TextAlignment="Right">Peso:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Camisas_1.Peso_Cadarco, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="1" Margin="10,0,0,0" >
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">COMPOSTO</TextBlock>
-
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">100% - RESINA:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Camisas_1.Peso_Resina, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">80% - HL918:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Camisas_1.Peso_HL918, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">5% - A78:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Camisas_1.Peso_A78, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel Margin="0,5,0,0">
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Camisas_1.Composto_Resina, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="2" Margin="10,0,0,0">
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">PESO</TextBlock>
-
-                                    <DockPanel>
-                                        <TextBlock Width="100" TextAlignment="Right">Cadarço:</TextBlock>
-                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Camisas_1.Peso_Cadarco, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="100" TextAlignment="Right">Composto:</TextBlock>
-                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Camisas_1.Composto_Resina, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel Margin="0,20,0,0">
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Camisas_1.Peso_Total, StringFormat={}{0}kg}"/>
-                                    </DockPanel>
-                                    
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="3" Margin="10,0,0,0">
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">VALOR PEÇAS</TextBlock>
-                                    
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">CARDARÇO:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Camisas_1.Preco_Cadarco, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-                                    
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">RESINA:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Camisas_1.Preco_Resina, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">HL918:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Camisas_1.Preco_HL918, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">A78:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Camisas_1.Preco_A78, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="10,0,0,0" Foreground="Green" Text="{Binding Camisas_1.Preco_Total, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-                                    
-
-                                </StackPanel>
-                                
-                            </Grid>
-
-                            <TextBlock TextAlignment="Center" Grid.Row="3" Grid.Column="0" Background="AntiqueWhite" FontWeight="Bold">E.V.A</TextBlock>
-
-                            <Grid x:Name="grdEVA" Margin="0,5,0,0" Grid.Row="4">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-
-                                <StackPanel Grid.Column="1">
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">Largura:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Eva.Largura, StringFormat={}{0} mm}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">Comprimento:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Eva.Comprimento, StringFormat={}{0} mm}"/>
-                                    </DockPanel>
-                                </StackPanel>
-
-                                
-                                <StackPanel Grid.Column="3" Margin="10,0,0,0">
-
-                                    <DockPanel>
-                                        <TextBlock FontWeight="Bold" Width="80" TextAlignment="Right">VALOR PEÇA:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Eva.Preco, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-                                </StackPanel>
-
-                            </Grid>
-
-                            <TextBlock Grid.Row="5" TextAlignment="Center" Background="AntiqueWhite" FontWeight="Bold">2º CAMISA</TextBlock>
-                            <DockPanel Grid.Row="6" VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Center">
-                                <TextBlock>Interna:</TextBlock>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Camisas_2.Interna}"></TextBlock>
-                                <TextBlock Margin="10,0,0,0">Externa:</TextBlock>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Camisas_2.Externa}"></TextBlock>
-                                <TextBlock Margin="10,0,0,0">Comprimento:</TextBlock>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Camisas_2.Comprimento}"></TextBlock>
-                            </DockPanel>
-                            
-                            <Grid x:Name="grdCamisa_2" Margin="0,5,0,0"  Grid.Row="7">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel Grid.Column="0">
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">CADARÇO</TextBlock>
-
-                                    <DockPanel>
-                                        <TextBlock Width="70" TextAlignment="Right">Metros:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Camisas_2.Metros_Cadarco, StringFormat={}{0} m}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="70" TextAlignment="Right">Peso:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Camisas_2.Peso_Cadarco, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="1" Margin="10,0,0,0" >
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">COMPOSTO</TextBlock>
-
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">100% - RESINA:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Camisas_2.Peso_Resina, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">20% - HT231:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Camisas_2.Peso_HT231, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel Margin="0,5,0,0">
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Camisas_2.Composto_Resina, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="2" Margin="10,0,0,0">
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">PESO</TextBlock>
-
-                                    <DockPanel>
-                                        <TextBlock Width="100" TextAlignment="Right">Cadarço:</TextBlock>
-                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Camisas_2.Peso_Cadarco, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="100" TextAlignment="Right">Composto:</TextBlock>
-                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Camisas_2.Composto_Resina, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel Margin="0,5,0,0">
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Camisas_2.Peso_Total, StringFormat={}{0}kg}"/>
-                                    </DockPanel>
-
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="3" Margin="10,0,0,0">
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">VALOR PEÇAS</TextBlock>
-
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">CARDARÇO:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Camisas_2.Preco_Cadarco, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">RESINA:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Camisas_2.Preco_Resina, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">HT231:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Camisas_2.Preco_HT231, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="10,0,0,0" Foreground="Green" Text="{Binding Camisas_2.Preco_Total, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-
-                                </StackPanel>
-
-                            </Grid>
-
-                            <TextBlock TextAlignment="Center" Grid.Row="8" Grid.Column="0" Background="AntiqueWhite" FontWeight="Bold">3º CAMISA</TextBlock>
-
-                            <DockPanel Grid.Row="9" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock>Interna:</TextBlock>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Camisas_3.Interna}"></TextBlock>
-                                <TextBlock Margin="10,0,0,0">Externa:</TextBlock>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Camisas_3.Externa}"></TextBlock>
-                                <TextBlock Margin="10,0,0,0">Comprimento:</TextBlock>
-                                <TextBlock Margin="5,0,0,0" Text="{Binding Camisas_3.Comprimento}"></TextBlock>
-                            </DockPanel>
-
-                            <Grid x:Name="grdCamisa_3" Margin="0,5,0,0" Grid.Row="10">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-
-                                <StackPanel Grid.Column="0">
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">CADARÇO</TextBlock>
-
-                                    <DockPanel>
-                                        <TextBlock Width="70" TextAlignment="Right">Metros:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Camisas_3.Metros_Cadarco, StringFormat={}{0} m}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="70" TextAlignment="Right">Peso:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Camisas_3.Peso_Cadarco, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="1" Margin="10,0,0,0" >
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">COMPOSTO</TextBlock>
-
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">95% - RESINA:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Camisas_3.Peso_Resina, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">20% - HT231:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Camisas_3.Peso_HT231, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">5% - K10:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Camisas_3.Peso_K10, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel Margin="0,5,0,0">
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Camisas_3.Composto_Resina, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="2" Margin="10,0,0,0">
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">PESO</TextBlock>
-
-                                    <DockPanel>
-                                        <TextBlock Width="100" TextAlignment="Right">Cadarço:</TextBlock>
-                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Camisas_3.Peso_Cadarco, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="100" TextAlignment="Right">Composto:</TextBlock>
-                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Camisas_3.Composto_Resina, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel Margin="0,20,0,0">
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Camisas_3.Peso_Total, StringFormat={}{0}kg}"/>
-                                    </DockPanel>
-
-                                </StackPanel>
-
-                                <StackPanel Grid.Column="3" Margin="10,0,0,0">
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">VALOR PEÇAS</TextBlock>
-
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">CARDARÇO:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Camisas_3.Preco_Cadarco, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">RESINA:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Camisas_3.Preco_Resina, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">HT231:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Camisas_3.Preco_HT231, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">K10:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Camisas_3.Preco_K10, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="10,0,0,0" Foreground="Green" Text="{Binding Camisas_3.Preco_Total, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
-
-
-                                </StackPanel>
-
-                            </Grid>
-                           
-                            <TextBlock TextAlignment="Center" Grid.Row="11" Grid.Column="0" Background="AntiqueWhite" FontWeight="Bold">FILAMENTO</TextBlock>
-
-                            <Grid x:Name="grdFilamento" Margin="0,5,0,0" Grid.Row="12">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                    <ColumnDefinition></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-
-                                <StackPanel Grid.Column="0">
-
-                                    <DockPanel Margin="0,20,0,10">
-                                        <TextBlock Margin="40,0,0,0" FontWeight="Bold" Width="70" TextAlignment="Right">Calculo A:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="#FF7C7C01" Text="{Binding Filamento.Filamento_A, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-
-                                    <DockPanel>
+                            <Grid Grid.Row="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="15"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="110"></RowDefinition>
+                                    <RowDefinition Height="15"></RowDefinition>
+                                    <RowDefinition Height="45"></RowDefinition>
+                                    <RowDefinition Height="15"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="90"></RowDefinition>
+                                    <RowDefinition Height="15"></RowDefinition>
+                                    <RowDefinition Height="20"></RowDefinition>
+                                    <RowDefinition Height="105"></RowDefinition>
+                                    <RowDefinition Height="15"></RowDefinition>
+                                    <RowDefinition Height="120"></RowDefinition>
+                                    <RowDefinition Height="15"></RowDefinition>
+                                    <RowDefinition Height="130"></RowDefinition>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock TextAlignment="Center" Grid.Row="0" Grid.Column="0" Background="AntiqueWhite" FontWeight="Bold">1º CAMISA</TextBlock>
+
+                                <DockPanel  Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock>Interna:</TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Camisas_1.Interna, StringFormat={}{0:N}}"></TextBlock>
+                                    <TextBlock Margin="10,0,0,0">Externa:</TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Camisas_1.Externa, StringFormat={}{0:N}}"></TextBlock>
+                                    <TextBlock Margin="10,0,0,0">Comprimento:</TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Camisas_1.Comprimento, StringFormat={}{0:N}}"></TextBlock>
+                                </DockPanel>
+
+                                <Grid x:Name="grdCamisa_1"  Margin="0,5,0,0" Grid.Row="2">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">CADARÇO</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="70" TextAlignment="Right">Metros:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Peca.Camisas_1.Metros_Cadarco, StringFormat={}{0} m}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="70" TextAlignment="Right">Peso:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_1.Peso_Cadarco, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="10,0,0,0" >
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">COMPOSTO</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">100% - RESINA:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_1.Peso_Resina, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">80% - HL918:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_1.Peso_HL918, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">5% - A78:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_1.Peso_A78, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel Margin="0,5,0,0">
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_1.Composto_Resina, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2" Margin="10,0,0,0">
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">PESO</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="100" TextAlignment="Right">Cadarço:</TextBlock>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_1.Peso_Cadarco, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="100" TextAlignment="Right">Composto:</TextBlock>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_1.Composto_Resina, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel Margin="0,20,0,0">
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_1.Peso_Total, StringFormat={}{0}kg}"/>
+                                        </DockPanel>
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="3" Margin="10,0,0,0">
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">VALOR PEÇAS</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">CARDARÇO:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Camisas_1.Preco_Cadarco, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">RESINA:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Peca.Camisas_1.Preco_Resina, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">HL918:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Camisas_1.Preco_HL918, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">A78:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Camisas_1.Preco_A78, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Green" Text="{Binding Peca.Camisas_1.Preco_Total, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                                <TextBlock TextAlignment="Center" Grid.Row="3" Grid.Column="0" Background="AntiqueWhite" FontWeight="Bold">E.V.A</TextBlock>
+
+                                <Grid x:Name="grdEVA" Margin="0,5,0,0" Grid.Row="4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <StackPanel Grid.Column="1">
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">Largura:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Peca.Eva.Largura, StringFormat={}{0:N} mm}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">Comprimento:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Peca.Eva.Comprimento, StringFormat={}{0:N} mm}"/>
+                                        </DockPanel>
+                                    </StackPanel>
+
+
+                                    <StackPanel Grid.Column="3" Margin="10,0,0,0">
+
+                                        <DockPanel>
+                                            <TextBlock FontWeight="Bold" Width="80" TextAlignment="Right">VALOR PEÇA:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Eva.Preco, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                                <TextBlock Grid.Row="5" TextAlignment="Center" Background="AntiqueWhite" FontWeight="Bold">2º CAMISA</TextBlock>
+                                <DockPanel Grid.Row="6" VerticalAlignment="Center" Grid.Column="0" HorizontalAlignment="Center">
+                                    <TextBlock>Interna:</TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Camisas_2.Interna, StringFormat={}{0:N}}"></TextBlock>
+                                    <TextBlock Margin="10,0,0,0">Externa:</TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Camisas_2.Externa, StringFormat={}{0:N}}"></TextBlock>
+                                    <TextBlock Margin="10,0,0,0">Comprimento:</TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Camisas_2.Comprimento, StringFormat={}{0:N}}"></TextBlock>
+                                </DockPanel>
+
+                                <Grid x:Name="grdCamisa_2" Margin="0,5,0,0"  Grid.Row="7">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">CADARÇO</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="70" TextAlignment="Right">Metros:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Peca.Camisas_2.Metros_Cadarco, StringFormat={}{0} m}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="70" TextAlignment="Right">Peso:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_2.Peso_Cadarco, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="10,0,0,0" >
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">COMPOSTO</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">100% - RESINA:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_2.Peso_Resina, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">20% - HT231:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_2.Peso_HT231, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel Margin="0,5,0,0">
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_2.Composto_Resina, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2" Margin="10,0,0,0">
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">PESO</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="100" TextAlignment="Right">Cadarço:</TextBlock>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_2.Peso_Cadarco, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="100" TextAlignment="Right">Composto:</TextBlock>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_2.Composto_Resina, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel Margin="0,5,0,0">
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_2.Peso_Total, StringFormat={}{0}kg}"/>
+                                        </DockPanel>
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="3" Margin="10,0,0,0">
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">VALOR PEÇAS</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">CARDARÇO:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Camisas_2.Preco_Cadarco, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">RESINA:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Peca.Camisas_2.Preco_Resina, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">HT231:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Camisas_2.Preco_HT231, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Green" Text="{Binding Peca.Camisas_2.Preco_Total, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                                <TextBlock TextAlignment="Center" Grid.Row="8" Grid.Column="0" Background="AntiqueWhite" FontWeight="Bold">3º CAMISA</TextBlock>
+
+                                <DockPanel Grid.Row="9" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                    <TextBlock>Interna:</TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Camisas_3.Interna, StringFormat={}{0:N}}"></TextBlock>
+                                    <TextBlock Margin="10,0,0,0">Externa:</TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Camisas_3.Externa, StringFormat={}{0:N}}"></TextBlock>
+                                    <TextBlock Margin="10,0,0,0">Comprimento:</TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Camisas_3.Comprimento, StringFormat={}{0:N}}"></TextBlock>
+                                </DockPanel>
+
+                                <Grid x:Name="grdCamisa_3" Margin="0,5,0,0" Grid.Row="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <StackPanel Grid.Column="0">
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">CADARÇO</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="70" TextAlignment="Right">Metros:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Peca.Camisas_3.Metros_Cadarco, StringFormat={}{0} m}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="70" TextAlignment="Right">Peso:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_3.Peso_Cadarco, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="1" Margin="10,0,0,0" >
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">COMPOSTO</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">95% - RESINA:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_3.Peso_Resina, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">20% - HT231:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_3.Peso_HT231, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">5% - K10:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_3.Peso_K10, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel Margin="0,5,0,0">
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_3.Composto_Resina, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="2" Margin="10,0,0,0">
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">PESO</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="100" TextAlignment="Right">Cadarço:</TextBlock>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_3.Peso_Cadarco, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="100" TextAlignment="Right">Composto:</TextBlock>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_3.Composto_Resina, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel Margin="0,20,0,0">
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Peca.Camisas_3.Peso_Total, StringFormat={}{0}kg}"/>
+                                        </DockPanel>
+
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Column="3" Margin="10,0,0,0">
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">VALOR PEÇAS</TextBlock>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">CARDARÇO:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Camisas_3.Preco_Cadarco, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">RESINA:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Peca.Camisas_3.Preco_Resina, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">HT231:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Camisas_3.Preco_HT231, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">K10:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Camisas_3.Preco_K10, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Green" Text="{Binding Peca.Camisas_3.Preco_Total, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+
+                                    </StackPanel>
+
+                                </Grid>
+
+                                <TextBlock TextAlignment="Center" Grid.Row="11" Grid.Column="0" Background="AntiqueWhite" FontWeight="Bold">FILAMENTO</TextBlock>
+
+                                <Grid x:Name="grdFilamento" Margin="0,5,0,0" Grid.Row="12">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                        <ColumnDefinition></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Grid.Column="0">
+
+                                        <DockPanel Margin="0,20,0,10">
+                                            <TextBlock Margin="40,0,0,0" FontWeight="Bold" Width="70" TextAlignment="Right">Calculo A:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="#FF7C7C01" Text="{Binding Peca.Filamento.Filamento_A, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
                                             <TextBlock Margin="40,0,0,0" FontWeight="Bold" Width="70" TextAlignment="Right">Calculo B:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="#FF7C7C01" Text="{Binding Filamento.Filamento_B, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-                                </StackPanel>
+                                            <TextBlock Margin="30,0,0,0" Foreground="#FF7C7C01" Text="{Binding Peca.Filamento.Filamento_B, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
+                                    </StackPanel>
 
-                                <StackPanel Grid.Column="1" Margin="10,0,0,0" >
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">COMPOSTO</TextBlock>
+                                    <StackPanel Grid.Column="1" Margin="10,0,0,0" >
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">COMPOSTO</TextBlock>
 
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">100% - RESINA:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Filamento.Peso_Resina, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">100% - RESINA:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Filamento.Peso_Resina, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
 
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">80% - HL918:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Filamento.Peso_HL918, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">80% - HL918:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Filamento.Peso_HL918, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
 
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">5% - A78:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Filamento.Peso_A78, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">5% - A78:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Filamento.Peso_A78, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
 
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">2% - Pigmento:</TextBlock>
-                                        <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Filamento.Peso_Pigmento, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">2% - Pigmento:</TextBlock>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Filamento.Peso_Pigmento, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
 
-                                    <DockPanel Margin="0,5,0,0">
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Filamento.Composto_Resina, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
+                                        <DockPanel Margin="0,5,0,0">
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Peca.Filamento.Composto_Resina, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
 
-                                </StackPanel>
+                                    </StackPanel>
 
-                                <StackPanel Grid.Column="2" Margin="10,0,0,0">
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">PESO</TextBlock>
+                                    <StackPanel Grid.Column="2" Margin="10,0,0,0">
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">PESO</TextBlock>
 
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">C. Resina + Fio:</TextBlock>
-                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Filamento.Composto_Resina_Fio, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
-                                    
-                                    <DockPanel>
-                                        <TextBlock Width="90" TextAlignment="Right">Fio:</TextBlock>
-                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Filamento.Peso_Fio, StringFormat={}{0} kg}"/>
-                                    </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">C. Resina + Fio:</TextBlock>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Filamento.Composto_Resina_Fio, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
 
-                                    <DockPanel Margin="0,20,0,0">
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Filamento.Peso_Total, StringFormat={}{0}kg}"/>
-                                    </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Width="90" TextAlignment="Right">Fio:</TextBlock>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Filamento.Peso_Fio, StringFormat={}{0} kg}"/>
+                                        </DockPanel>
 
-                                </StackPanel>
+                                        <DockPanel Margin="0,20,0,0">
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Filamento.Peso_Total, StringFormat={}{0}kg}"/>
+                                        </DockPanel>
 
-                                <StackPanel Grid.Column="3" Margin="10,0,0,0">
-                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">VALOR PEÇAS</TextBlock>
+                                    </StackPanel>
 
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">FIO:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Filamento.Preco_Fio, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
+                                    <StackPanel Grid.Column="3" Margin="10,0,0,0">
+                                        <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">VALOR PEÇAS</TextBlock>
 
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">RESINA:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Filamento.Preco_Resina, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">FIO:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Filamento.Preco_Fio, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
 
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">HL918:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Filamento.Preco_HL918, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">RESINA:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Peca.Filamento.Preco_Resina, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
 
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">A78:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Filamento.Preco_A78, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">HL918:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Filamento.Preco_HL918, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
 
-                                    <DockPanel>
-                                        <TextBlock Width="80" TextAlignment="Right">Pigmento:</TextBlock>
-                                        <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Filamento.Preco_Pigmento, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">A78:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Filamento.Preco_A78, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
 
-                                    <DockPanel>
-                                        <TextBlock FontWeight="Bold">Total</TextBlock>
-                                        <TextBlock Margin="10,0,0,0" Foreground="Green" Text="{Binding Filamento.Preco_Total, StringFormat=R$ {0}}"/>
-                                    </DockPanel>
+                                        <DockPanel>
+                                            <TextBlock Width="80" TextAlignment="Right">Pigmento:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Filamento.Preco_Pigmento, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
+
+                                        <DockPanel>
+                                            <TextBlock FontWeight="Bold">Total</TextBlock>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Green" Text="{Binding Peca.Filamento.Preco_Total, StringFormat=R$ {0:N}}"/>
+                                        </DockPanel>
 
 
-                                </StackPanel>
+                                    </StackPanel>
 
-                            </Grid>
+                                </Grid>
 
                                 <TextBlock TextAlignment="Center" Grid.Row="13" Grid.Column="0" Background="AntiqueWhite" FontWeight="Bold">ACABAMENTO</TextBlock>
 
@@ -539,32 +537,32 @@
 
                                         <DockPanel>
                                             <TextBlock Width="90" TextAlignment="Right">100% - RESINA:</TextBlock>
-                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Acabamento.Peso_Resina, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Acabamento.Peso_Resina, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="90" TextAlignment="Right">20% - HT231:</TextBlock>
-                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Acabamento.Peso_HT231, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Acabamento.Peso_HT231, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="90" TextAlignment="Right">2% - Anti Bolha:</TextBlock>
-                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Acabamento.Peso_AntiBolha, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Acabamento.Peso_AntiBolha, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="90" TextAlignment="Right">10% - K10:</TextBlock>
-                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Acabamento.Peso_K10, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Acabamento.Peso_K10, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="90" TextAlignment="Right">2% - Pigmento:</TextBlock>
-                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Acabamento.Peso_Pigmento, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Acabamento.Peso_Pigmento, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                         <DockPanel Margin="0,5,0,0">
                                             <TextBlock FontWeight="Bold">Total</TextBlock>
-                                            <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Acabamento.Composto_Resina, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Peca.Acabamento.Composto_Resina, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                     </StackPanel>
@@ -574,32 +572,32 @@
 
                                         <DockPanel>
                                             <TextBlock Width="80" TextAlignment="Right">RESINA:</TextBlock>
-                                            <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Acabamento.Preco_Resina, StringFormat=R$ {0}}"/>
+                                            <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Peca.Acabamento.Preco_Resina, StringFormat=R$ {0:N}}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="80" TextAlignment="Right">HT231:</TextBlock>
-                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Acabamento.Preco_HT231, StringFormat=R$ {0}}"/>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Acabamento.Preco_HT231, StringFormat=R$ {0:N}}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="80" TextAlignment="Right">Anti Bolha:</TextBlock>
-                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Acabamento.Preco_AntiBolha, StringFormat=R$ {0}}"/>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Acabamento.Preco_AntiBolha, StringFormat=R$ {0:N}}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="80" TextAlignment="Right">K10:</TextBlock>
-                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Acabamento.Preco_K10, StringFormat=R$ {0}}"/>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Acabamento.Preco_K10, StringFormat=R$ {0:N}}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="80" TextAlignment="Right">Pigmento:</TextBlock>
-                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Acabamento.Preco_Pigmento, StringFormat=R$ {0}}"/>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Acabamento.Preco_Pigmento, StringFormat=R$ {0:N}}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock FontWeight="Bold">Total</TextBlock>
-                                            <TextBlock Margin="10,0,0,0" Foreground="Green" Text="{Binding Acabamento.Preco_Total, StringFormat=R$ {0}}"/>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Green" Text="{Binding Peca.Acabamento.Preco_Total, StringFormat=R$ {0:N}}"/>
                                         </DockPanel>
 
 
@@ -607,15 +605,190 @@
 
                                 </Grid>
 
-                            </Grid>                                
-                            <!--<TextBlock Width="500">teste</TextBlock>
-                            <TextBlock Width="500">teste</TextBlock>
-                            <TextBlock Width="500">teste</TextBlock>
-                            <TextBlock Width="500">teste</TextBlock>-->
+                            </Grid>
+                        </ScrollViewer>
 
-                    </ScrollViewer>
-                </Grid>
-                    
+                        <Grid Grid.Column="1" Margin="10,0,10,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="15"></RowDefinition>
+                                <RowDefinition Height="80"></RowDefinition>
+                                <RowDefinition Height="300"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <TextBlock TextAlignment="Center" Grid.Row="0" Grid.Column="0" Background="AntiqueWhite" FontWeight="Bold">CUSTO PRODUÇÃO</TextBlock>
+
+                            <Grid Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <DockPanel>
+                                    <Controls:NumericUpDown Value="{Binding Peca.Quantidade}" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Total de Peças (unidade)" ToolTip="QNTD PEÇAS"></Controls:NumericUpDown>
+
+                                    <Controls:NumericUpDown  Margin="5" Value="{Binding Peca.Reducao}" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Redução %" ToolTip="Reduzir valores"></Controls:NumericUpDown>
+                                </DockPanel>
+                            </Grid>
+
+                            <Grid Grid.Row="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel x:Name="stckPesoTotal" Grid.Column="0">
+                                    <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">PESO</TextBlock>
+
+                                    <DockPanel>
+                                        <TextBlock Width="90" TextAlignment="Right">RESINA:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Peso_Resina, StringFormat={}{0} kg}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="90" TextAlignment="Right">HL918:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Peso_HL918, StringFormat={}{0} kg}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="90" TextAlignment="Right">A78:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Peso_A78, StringFormat={}{0} kg}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="90" TextAlignment="Right">HT231:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Peso_HT231, StringFormat={}{0} kg}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="90" TextAlignment="Right">ANTI BOLHA:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Peso_AntiBolha, StringFormat={}{0} kg}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="90" TextAlignment="Right">K10:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Peso_K10, StringFormat={}{0} kg}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="90" TextAlignment="Right">PIGMENTO:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Peso_Pigmento, StringFormat={}{0} kg}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="90" TextAlignment="Right">COLA:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Red"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="90" TextAlignment="Right">ANEL:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Red"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="90" TextAlignment="Right">ISOPOR:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Red"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="90" TextAlignment="Right">CADARÇO:</TextBlock>
+                                        <!--<TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Peso_Cadarco, StringFormat={}{0} kg}"/>-->
+                                        <TextBlock Margin="20,0,0,0"  Foreground="Red">
+                                            <Run Text="{Binding Peca.Metros_Cadarco, StringFormat={}{0} m}"></Run>
+                                            <Run Text="/"></Run>
+                                            <Run Text="{Binding Peca.Peso_Cadarco, StringFormat={}{0} kg}"></Run>
+                                            <Run Text="/"></Run>
+                                            <Run Text="{Binding Peca.Bobinas_Cadarco, StringFormat={}{0} Bobinas}"></Run>
+                                        </TextBlock>
+
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">FIO:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Peso_Fio, StringFormat={}{0} kg}"/>
+                                    </DockPanel>
+
+                                    <DockPanel Margin="0,20,0,0">
+                                        <TextBlock FontWeight="Bold">Total</TextBlock>
+                                        <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Peca.Peso_Total, StringFormat={}{0} kg}"/>
+                                    </DockPanel>
+
+                                </StackPanel>
+
+                                <StackPanel x:Name="stckPrecoTotal" Grid.Column="1">
+                                    <TextBlock Background="Azure" Margin="5,0,0,0" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">VALOR PEÇAS</TextBlock>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">RESINA:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green" Text="{Binding Peca.Preco_Resina, StringFormat=R$ {0:N}}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">HL918:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green" Text="{Binding Peca.Preco_HL918, StringFormat=R$ {0:N}}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">A78:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green" Text="{Binding Peca.Preco_A78, StringFormat=R$ {0:N}}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">HT231:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green" Text="{Binding Peca.Preco_HT231, StringFormat=R$ {0:N}}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">ANTI BOLHA:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green" Text="{Binding Peca.Preco_AntiBolha, StringFormat=R$ {0:N}}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">K10:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green" Text="{Binding Peca.Preco_K10, StringFormat=R$ {0:N}}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">PIGMENTO:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green" Text="{Binding Peca.Preco_Pigmento, StringFormat=R$ {0:N}}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">COLA:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">ANEL:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">ISOPOR:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">CADARÇO:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green" Text="{Binding Peca.Preco_Cadarco, StringFormat=R$ {0:N}}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">FIO:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green" Text="{Binding Peca.Preco_Fio, StringFormat=R$ {0:N}}"/>
+                                    </DockPanel>
+
+                                    <DockPanel>
+                                        <TextBlock Width="100" TextAlignment="Right">E.V.A:</TextBlock>
+                                        <TextBlock Margin="20,0,0,0" Foreground="Green" Text="{Binding Peca.Eva.Preco, StringFormat=R$ {0:N}}"/>
+                                    </DockPanel>
+
+                                    <DockPanel Margin="0,5,0,0">
+                                        <TextBlock TextAlignment="Right" FontWeight="Bold">Total</TextBlock>
+                                        <TextBlock Margin="10,0,0,0" Foreground="Green" Text="{Binding Peca.Preco_Total, StringFormat=R$ {0:N}}"/>
+                                    </DockPanel>
+
+                                </StackPanel>
+
+                            </Grid>
+
+                        </Grid>
+
+                    </Grid>
                 </Grid>
             </TabItem>
 

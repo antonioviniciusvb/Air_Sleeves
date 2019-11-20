@@ -30,11 +30,13 @@ namespace Air_Sleeves.Model
 
         public void Calc_Valores_Acabamento()
         {
+            limpaTotais();
             Calc_Itens();
         }
 
-        public void Calc_Valores_Acabamento(Camisa camisa_1, Camisa camisa_3)
+        public void calc_Valores_Acabamento(Camisa camisa_1, Camisa camisa_3)
         {
+            limpaTotais();
             this.Composto_Resina = Calc_Composto_Resina(camisa_1, camisa_3);
             Calc_Itens();
         }

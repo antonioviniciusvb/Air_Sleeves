@@ -11,6 +11,11 @@ namespace Air_Sleeves.Util
     {
         public const decimal pi = 3.1416M;
         
+        public static decimal Reducao_Percentual(decimal vl, decimal percent, int digit)
+        {
+            return Math.Round((vl - ((vl * percent) / 100)), digit);
+        }
+
         public static decimal Multiplica(decimal vl_1, decimal vl_2, int casas_Decimais)
         {
             return Math.Round((vl_1 * vl_2), casas_Decimais);

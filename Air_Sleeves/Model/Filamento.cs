@@ -58,8 +58,9 @@ namespace Air_Sleeves.Model
 
         public void calc_Valores_Filamento()
         {
+            limpaTotais();
+
             this.Composto_Resina_Fio = Calc_Composto_Resina_Fio();
-            this.Peso_Total = Peso_Total + Composto_Resina_Fio;
 
             calc_Valores_Fio();
             
@@ -71,11 +72,12 @@ namespace Air_Sleeves.Model
 
         public void calc_Valores_Filamento(Camisa camisa_1, Camisa camisa_3, decimal valor_isopor)
         {
+            limpaTotais();
+
             this.Filamento_A = Calc_Filamento_A(camisa_3, valor_isopor);
             this.Filamento_B = Calc_Filamento_B(camisa_1, camisa_3, valor_isopor);
 
             this.Composto_Resina_Fio = Calc_Composto_Resina_Fio();
-            this.Peso_Total = Peso_Total + Composto_Resina_Fio;
 
             calc_Valores_Fio();
 
@@ -91,6 +93,9 @@ namespace Air_Sleeves.Model
             var preco_Fio = preco_Material(id);
 
             this.Peso_Fio = Calculo.Multiplica(this.Composto_Resina_Fio, 0.6M, 3);
+            this.Peso_Total = Peso_Total + Peso_Fio;
+
+
             this.Preco_Fio = Calculo.Multiplica(this.Peso_Fio, preco_Fio, 2);
             this.Preco_Total = this.Preco_Total + Preco_Fio;
         }
