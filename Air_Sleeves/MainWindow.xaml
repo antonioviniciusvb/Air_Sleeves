@@ -8,7 +8,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Air_Sleeves"
         mc:Ignorable="d"
-        Title="Air Sleeves - Teste"
+        Title="Air Sleeves - Master"
         WindowState="Maximized" WindowStartupLocation="CenterScreen">
     <Grid Margin="30,0,0,20">
         <Controls:MetroAnimatedTabControl  Controls:TabControlHelper.Underlined="TabItems">
