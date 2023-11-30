@@ -31,5 +31,11 @@ namespace Air_Sleeves.Views
             Usuario usuario = new Usuario();
             usuario.Show();
         }
+
+        private void TileProdutos(object sender, RoutedEventArgs e)
+        {
+            Produtos produtos = new Produtos();
+            produtos.ShowDialog();
+        }
     }
 }

@@ -7,35 +7,33 @@ using System.ComponentModel;
 
 namespace Air_Sleeves.Model
 {
-    public class Eva:INotifyPropertyChanged
+    public class Eva: DetalhesMaterial
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        decimal fatorPesoResina;
 
         public Eva()
         {
         }
 
-        private void calc_Eva()
+        private void calc_CompostoResina(decimal c_interna, decimal comprimento)
         {
-            this.Preco =  Math.Round(((Largura * Comprimento * 13.0M) / 2.5M) / 1000.0M, 2);
+            var parametro_1 = (c_interna * Calculo.pi);
+
+            fatorPesoResina = Math.Round((parametro_1 * comprimento) / 1000, 2);
+
+            this.Composto_Resina = Math.Round(fatorPesoResina * 0.0002M, 3);
+
         }
 
-        private void calc_Largura(decimal c_interna)
+        public void calc_Valores_Eva(decimal interna, decimal comprimento, bool type)
         {
-            this.Largura =  Math.Round(((c_interna * Calculo.pi) + 40) / 1000.0M,3);
+            LimpaTotais();
+            calc_CompostoResina(interna, comprimento);
+            Calc_Itens();
+            Calc_EVA(fatorPesoResina, type);
         }
 
-        public void calc_Valores_Eva(decimal interna, decimal comprimento)
-        {
-            calc_Largura(interna);
-            this.Comprimento = comprimento;
-            calc_Eva();
-        }
-
-
-
-        public decimal Largura { get; set; }
-        public decimal Comprimento { get; set; }
+        //public decimal Comprimento { get; set; }
         public decimal Preco { get; set; }
     }
 }

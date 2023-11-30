@@ -12,17 +12,17 @@
     <Grid Margin="40">
         <WrapPanel>
 
-            <Controls:Tile Title="Usúarios" Click="TileUsuario" ToolTip="Usúarios"  Height="200" Width="240" Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}" HorizontalTitleAlignment="Center" Background="#CCFCF50A">
+            <!--<Controls:Tile Cursor="Hand" Title="Usúarios" Click="TileUsuario" ToolTip="Usúarios"  Height="200" Width="240" Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}" HorizontalTitleAlignment="Center" Background="#CCFCF50A">
                 <iconPacks:PackIconModern Kind="User" Width="70" Height="70"></iconPacks:PackIconModern>
-            </Controls:Tile>
+            </Controls:Tile>-->
 
-            <Controls:Tile Title="Produtos" ToolTip="Adicionar Produtos"  Height="200" Width="240" Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}" HorizontalTitleAlignment="Center" Background="#FF354B8B">
+            <Controls:Tile Cursor="Hand" Click="TileProdutos" Title="Produtos" ToolTip="Adicionar Produtos"  Height="200" Width="240" Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}" HorizontalTitleAlignment="Center" Background="#FF354B8B">
                 <iconPacks:PackIconModern Kind="Box" Width="70" Height="70"></iconPacks:PackIconModern>
             </Controls:Tile>
 
-            <Controls:Tile Title="Empresas" ToolTip="Empresas"  Height="200" Width="240" Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}" HorizontalTitleAlignment="Center" Background="#CC17DABB">
+            <!--<Controls:Tile Cursor="Hand" Title="Empresas" ToolTip="Empresas"  Height="200" Width="240" Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}" HorizontalTitleAlignment="Center" Background="#CC17DABB">
                 <iconPacks:PackIconModern Kind="UserTie" Width="70" Height="70"></iconPacks:PackIconModern>
-            </Controls:Tile>
+            </Controls:Tile>-->
 
             <!--<Controls:Tile  Title="" ToolTip="Adicionar Licenças" Height="100" Width="200" TextOptions.TextFormattingMode="Ideal" Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource BlackBrush}" HorizontalTitleAlignment="Center" Background="#FF3E3E42">
                 <iconPacks:PackIconModern Kind="CheckmarkPencil" Width="30" Height="30"  ></iconPacks:PackIconModern>

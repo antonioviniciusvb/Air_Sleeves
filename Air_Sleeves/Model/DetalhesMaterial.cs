@@ -23,12 +23,22 @@ namespace Air_Sleeves.Model
 
 
         public decimal Composto_Resina { get; set; }
+        public decimal Composto_Resina_2 { get; set; }
+
         public decimal Composto_Resina_Fio { get; set; }
 
 
         #region Resina
         public decimal Preco_Resina { get; set; }
         public decimal Peso_Resina { get; set; }
+
+        #endregion
+
+
+        #region Resina 101F
+        public decimal Preco_Resina101F { get; set; }
+        public decimal Peso_Resina101F { get; set; }
+
         #endregion
 
         #region HL918
@@ -52,6 +62,13 @@ namespace Air_Sleeves.Model
 
         #endregion
 
+        #region HT365
+
+        public decimal Preco_HT365 { get; set; }
+        public decimal Peso_HT365 { get; set; }
+
+        #endregion
+
         #region ANTI-BOLHA
         public decimal Preco_AntiBolha { get; set; }
         public decimal Peso_AntiBolha { get; set; }
@@ -70,6 +87,10 @@ namespace Air_Sleeves.Model
         #region FIO
         public decimal Peso_Fio { get;set; }
         public decimal Preco_Fio { get;set; }
+        #endregion
+
+        #region EVA
+        public decimal Preco_EVA { get; set; }
         #endregion
 
         #region Cardaco
@@ -98,6 +119,12 @@ namespace Air_Sleeves.Model
             this._porcentagem.Add(material.First().Id, porcentagem);
         }
 
+        public void LimpaMaterial()
+        {
+            this._materiais.Clear();
+            this._porcentagem.Clear();
+        }
+
         public decimal preco_Material(int id)
         {
             return (decimal)_materiais.Where(x => x.Id == id).Select(x => x.Preco).Distinct().Sum();
@@ -117,7 +144,6 @@ namespace Air_Sleeves.Model
 
         protected void Calc_Itens()
         {
-      
             //Resina
             int id = 1;
 
@@ -127,10 +153,7 @@ namespace Air_Sleeves.Model
                 var pct_Resina = percentual_Material(id);
 
                 this.Peso_Resina = Calculo.MultiplicaDivide(this.Composto_Resina, pct_Resina, Pct_Total_Materiais, 3);
-                this.Peso_Total = Peso_Total + Peso_Resina;
-
                 this.Preco_Resina = Calculo.Multiplica(Peso_Resina, preco_Resina, 2);
-                this.Preco_Total = Preco_Total + Preco_Resina;
             }
 
             //HL918
@@ -142,10 +165,7 @@ namespace Air_Sleeves.Model
                 var pct_HL918 = percentual_Material(id);
 
                 this.Peso_HL918 = Calculo.MultiplicaDivide(this.Composto_Resina, pct_HL918, Pct_Total_Materiais, 3);
-                this.Peso_Total = Peso_Total + Peso_HL918;
-
                 this.Preco_HL918 = Calculo.Multiplica(Peso_HL918, preco_HL918, 2);
-                this.Preco_Total = Preco_Total + Preco_HL918;
             }
 
             //A78
@@ -157,10 +177,7 @@ namespace Air_Sleeves.Model
                 var pct_A78 = percentual_Material(id);
 
                 this.Peso_A78 = Calculo.MultiplicaDivide(this.Composto_Resina, pct_A78, Pct_Total_Materiais, 3);
-                this.Peso_Total = Peso_Total + Peso_A78;
-
                 this.Preco_A78 = Calculo.Multiplica(Peso_A78, preco_A78, 2);
-                this.Preco_Total = Preco_Total + Preco_A78;
             }
 
             //HT231
@@ -172,10 +189,7 @@ namespace Air_Sleeves.Model
                 var pct_HT231 = percentual_Material(id);
 
                 this.Peso_HT231 = Calculo.MultiplicaDivide(this.Composto_Resina, pct_HT231, Pct_Total_Materiais, 3);
-                this.Peso_Total = Peso_Total + Peso_HT231;
-
                 this.Preco_HT231 = Calculo.Multiplica(this.Peso_HT231, preco_HT231, 2);
-                this.Preco_Total = Preco_Total + Preco_HT231;
             }
 
             //ANTI-BOLHA
@@ -187,10 +201,8 @@ namespace Air_Sleeves.Model
                 var pct_ANTI_BOLHA = percentual_Material(id);
 
                 this.Peso_AntiBolha = Calculo.MultiplicaDivide(this.Composto_Resina, pct_ANTI_BOLHA, Pct_Total_Materiais, 3);
-                this.Peso_Total = Peso_Total + Peso_AntiBolha;
 
                 this.Preco_AntiBolha = Calculo.Multiplica(this.Peso_AntiBolha, preco_ANTI_BOLHA, 2);
-                this.Preco_Total = Preco_Total + Preco_AntiBolha;
             }
 
             //k10
@@ -202,10 +214,7 @@ namespace Air_Sleeves.Model
                 var pct_K10 = percentual_Material(id);
 
                 this.Peso_K10 = Calculo.MultiplicaDivide(this.Composto_Resina, pct_K10, Pct_Total_Materiais, 3);
-                this.Peso_Total = Peso_Total + Peso_K10;
-
                 this.Preco_K10 = Calculo.Multiplica(this.Peso_K10, preco_K10, 2);
-                this.Preco_Total = Preco_Total + Preco_K10;
             }
 
             //Pigmento
@@ -217,18 +226,89 @@ namespace Air_Sleeves.Model
                 var pct_Pigmento = percentual_Material(id);
 
                 this.Peso_Pigmento = Calculo.MultiplicaDivide(this.Composto_Resina, pct_Pigmento, Pct_Total_Materiais, 3);
-                this.Peso_Total = Peso_Total + Peso_Pigmento;
-
                 this.Preco_Pigmento = Calculo.Multiplica(this.Peso_Pigmento, preco_Pigmento, 2);
-                this.Preco_Total = Preco_Total + Preco_Pigmento;
+            }
+
+            //Resina 101F
+            id = 15;
+
+            if (_materiais.Any(x => x.Id == id))
+            {
+                var preco_Resina101F = preco_Material(id);
+                var pct_Resina101F = percentual_Material(id);
+
+                this.Peso_Resina101F = Calculo.MultiplicaDivide(this.Composto_Resina, pct_Resina101F, Pct_Total_Materiais, 3);
+                this.Preco_Resina101F = Calculo.Multiplica(Peso_Resina101F, preco_Resina101F, 2);
+                
             }
 
 
+            //HT365
+            id = 16;
+
+            if (_materiais.Any(x => x.Id == id))
+            {
+                var preco_HT365 = preco_Material(id);
+                var pct_HT365 = percentual_Material(id);
+
+                this.Peso_HT365 = Calculo.MultiplicaDivide(this.Composto_Resina, pct_HT365, Pct_Total_Materiais, 3);
+                this.Preco_HT365 = Calculo.Multiplica(this.Peso_HT365, preco_HT365, 2);
+            }
+
+
+            this.Preco_Total = Preco_Total + Preco_Resina + Preco_Resina101F + Preco_Pigmento + Preco_K10 + Preco_AntiBolha + Preco_HT231 + Preco_A78 + Preco_HL918 + Preco_HT365;
+            this.Peso_Total = Peso_Total + Peso_Resina + Peso_Resina101F + Peso_Pigmento + Peso_K10 + Peso_AntiBolha + Peso_HT231 + Peso_A78 + Peso_HL918 + Peso_HT365;
+
+        }
+
+        protected void Calc_Itens_Isopor()
+        {
+            //Resina
+            int id = 15;
+
+            var preco_Resina = preco_Material(id);
+            var pct_Resina = percentual_Material(id);
+
+            var Peso_Resina_1 = Calculo.MultiplicaDivide(this.Composto_Resina, pct_Resina, Pct_Total_Materiais, 3);
+            var Peso_Resina_2 = Calculo.MultiplicaDivide(this.Composto_Resina_2, pct_Resina, Pct_Total_Materiais, 3);
+
+            this.Peso_Resina101F = Peso_Resina_1 + Peso_Resina_2;
+
+            this.Preco_Resina101F = Calculo.Multiplica(Peso_Resina101F, preco_Resina, 2);
+
+            //HT231
+            id = 4;
+
+            var preco_HT231 = preco_Material(id);
+            var pct_HT231 = percentual_Material(id);
+
+            var Peso_HT231_1 = Calculo.MultiplicaDivide(this.Composto_Resina, pct_HT231, Pct_Total_Materiais, 3);      
+            var Peso_HT231_2 = Calculo.MultiplicaDivide(this.Composto_Resina_2, pct_HT231, Pct_Total_Materiais, 3);
+
+            this.Peso_HT231 = Peso_HT231_1 + Peso_HT231_2;
+
+            this.Preco_HT231 = Calculo.Multiplica(this.Peso_HT231, preco_HT231, 2);
+
+            this.Peso_Total = Peso_Total + Peso_Resina101F + Peso_HT231;            
+            this.Preco_Total = Preco_Total + Preco_HT231 + Preco_Resina101F;
 
         }
 
 
-        public void limpaTotais()
+        protected void Calc_EVA(decimal  fator, bool type)
+        {
+            var p_EVA = preco_Material(14);
+
+            this.Preco_EVA = Math.Round((Calculo.Multiplica(fator, p_EVA, 2) / 1400) * 2, 2);
+
+            if (type == false)
+                Preco_EVA *= 2;
+
+            Preco_Total += Preco_EVA;
+        }
+
+
+        public void LimpaTotais()
         {
             Peso_Total = 0;
             Preco_Total = 0;
@@ -240,15 +320,6 @@ namespace Air_Sleeves.Model
         {
             get
             {
-                //if (columnName.Equals("Interna"))
-                //{
-                //    if (Interna <= 0)
-                //    {
-                //        Interna = 0;
-                //        return "Valor deve ser maior que zero";
-                //    }
-                //}
-
                 return null;
             }
         }

@@ -13,7 +13,14 @@ namespace Air_Sleeves.Util
         
         public static decimal Reducao_Percentual(decimal vl, decimal percent, int digit)
         {
-            return Math.Round((vl - ((vl * percent) / 100)), digit);
+            var reducao = vl * (percent / 100);
+
+            return Math.Round(vl - reducao, digit);
+        }
+
+        public static decimal Adiciona_Percentual(decimal vl, decimal percent, int digit)
+        {
+            return Math.Round((vl + ((vl * percent) / 100)), digit);
         }
 
         public static decimal Multiplica(decimal vl_1, decimal vl_2, int casas_Decimais)

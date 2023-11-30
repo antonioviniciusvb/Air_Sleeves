@@ -29,7 +29,6 @@ namespace Air_Sleeves
     public partial class MainWindow : MetroWindow
     {
 
-        //private EfContext context = new EfContext();
         private ViewModel.ViewModel _viewModel;
 
         public MainWindow()
@@ -38,43 +37,19 @@ namespace Air_Sleeves
             this.Language = XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag);
 
             InitializeComponent();
-            //DalHelper.CriarBancoSQLite();
-            //DalHelper.CriarTabelaSQlite();
 
             //C#
             using (var contexto = new EfContext())
             {
-                //foreach (var c in contexto.cliente)
-                //    contexto.cliente.Remove(c);
-
                 contexto.SaveChanges();
 
-                //    contexto.cliente.Add(new Cliente() { Nome = "Novo Cliente EF" });
-                //contexto.SaveChanges();
-
-                //    //// C#
-                //    //var cliente = contexto.cliente.First();
-                //    //cliente.Nome = "Novo Cliente EF Alterado";
-                //    //contexto.SaveChanges();
-
-                //    ////C#
-
-
-                var query = from m in contexto.material
-                            where m.Preco >= 50 && m.Nome.Substring(0, 1) == "H"
-                            select m;
-
-                //txtTeste.AppendText($"----- >= 50 -----------{"\n"}");
+                //var query = from m in contexto.material.ToList()
+                //            where m.Id == 1 
+                //            select m;
 
                 //foreach (var item in query)
                 //{
-                //    txtTeste.AppendText($"{item.Nome} - R$ {item.Preco}{"\n"}");
-                //}
 
-
-                //foreach (var material in contexto.material)
-                //{
-                //    txtTeste.AppendText($"Nome do Cliente: {material.Nome}-{material.Preco}" + Environment.NewLine);
                 //}
             }
 
