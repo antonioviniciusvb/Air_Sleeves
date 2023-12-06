@@ -48,34 +48,54 @@ namespace Air_Sleeves.Model
 
         #endregion
 
-        private bool _type;
+        public bool Type { get; set; }
 
-        public bool Type
-        {
-            get { return _type; }
-            set
-            {
-                _type = value;
-            }
-        }
+        private List<Camisa> _camisas;
 
-        private List<Camisa> _c;
-
-        private Isopor _isopor;
+        
 
         public Camisa Camisas_1
         {
-            get { return _c[0]; }
+            get { return _camisas[0]; }
         }
 
         public Camisa Camisas_2
         {
-            get { return _c[1]; }
+            get { return _camisas[1]; }
         }
 
-        public Isopor Isopor
+        private Isopor _selagem;
+
+        public Isopor Selagem
         {
-            get { return _isopor; }
+            get { return _selagem; }
+        }
+
+        private Isopor _colagem;
+
+        public Isopor Colagem
+        {
+            get { return _colagem; }
+        }
+
+        public Peça(Camisa camisa_1, Camisa camisa_2, Isopor selagem, Isopor colagem, Filamento filamento, Acabamento acabamento, Eva eva)
+        {
+            _camisas = new List<Camisa>();
+            _camisas.Add(camisa_1);
+            _camisas.Add(camisa_2);
+            _selagem = selagem;
+            _colagem = colagem;
+
+            _f = filamento;
+            _ac = acabamento;
+            _eva = eva;
+            _quantidade = 1;
+        }
+
+
+        public Peça()
+        {
+
         }
 
 
@@ -83,7 +103,8 @@ namespace Air_Sleeves.Model
         {
             Camisas_1.LimpaMaterial();
             Camisas_2.LimpaMaterial();
-            Isopor.LimpaMaterial();
+            Selagem.LimpaMaterial();
+            Colagem.LimpaMaterial();
             Filamento.LimpaMaterial();
             Acabamento.LimpaMaterial();
             Eva.LimpaMaterial();
@@ -111,9 +132,6 @@ namespace Air_Sleeves.Model
             get { return _eva; }
         }
 
-
-
-
         private int _quantidade;
         public int Quantidade
         {
@@ -123,7 +141,7 @@ namespace Air_Sleeves.Model
                 if (value >= 1)
                     _quantidade = value;
 
-                Calcula_Valores_Pecas();
+                CalculaValores();
                 
             }
         }
@@ -144,7 +162,7 @@ namespace Air_Sleeves.Model
 
         private void Calcula_Valores_Pecas_Com_Reducao()
         {
-            Calcula_Valores_Pecas();
+            CalculaValores();
 
             Preco_Resina = Calculo.Reducao_Percentual(Preco_Resina, Reducao,2);
             Preco_HL918 = Calculo.Reducao_Percentual(Preco_HL918, Reducao,2);
@@ -161,81 +179,45 @@ namespace Air_Sleeves.Model
             Preco_Total_Embalagem = Calculo.Reducao_Percentual(Preco_Isopor, Reducao, 2);
             Preco_Total_Isopor = Calculo.Reducao_Percentual(Preco_Embalagem, Reducao, 2);
 
-            //Peso_Resina = Calculo.Reducao_Percentual(Peso_Resina, Reducao,3);
-            //Peso_HL918 = Calculo.Reducao_Percentual(Peso_HL918, Reducao,3);
-            //Peso_A78 = Calculo.Reducao_Percentual(Peso_A78, Reducao,3);
-            //Peso_HT231 = Calculo.Reducao_Percentual(Peso_HT231, Reducao,3);
-            //Peso_AntiBolha = Calculo.Reducao_Percentual(Peso_AntiBolha, Reducao,3);
-            //Peso_K10 = Calculo.Reducao_Percentual(Peso_K10, Reducao,3);
-            //Peso_Pigmento = Calculo.Reducao_Percentual(Peso_Pigmento, Reducao,3);
-            //Peso_Cadarco = Calculo.Reducao_Percentual(Peso_Cadarco, Reducao,3);
-            //Peso_Fio = Calculo.Reducao_Percentual(Peso_Fio, Reducao,3);
-            //Peso_Total = Calculo.Reducao_Percentual(Peso_Total, Reducao,3);
-            //Bobinas_Cadarco = Calculo.Reducao_Percentual(Bobinas_Cadarco, Reducao,2);
-            //Peso_Resina101F = Calculo.Reducao_Percentual(Peso_Resina101F, Reducao, 3);
-
-            //Metros_Cadarco = Calculo.Reducao_Percentual(Metros_Cadarco, Reducao,2);
-
             Preco_Total = Calculo.Reducao_Percentual(Preco_Total, Reducao,2);
         }
 
-        public void Calcula_Valores_Pecas()
+        public void CalculaValores()
         {
-            Preco_Resina = (_c.Sum(x => x.Preco_Resina) + _isopor.Preco_Resina + _f.Preco_Resina + _ac.Preco_Resina + _eva.Preco_Resina) * Quantidade;
-            Preco_HL918 = (_c.Sum(x => x.Preco_HL918) + _f.Preco_HL918 + _ac.Preco_HL918) * Quantidade;
-            Preco_A78 = (_c.Sum(x => x.Preco_A78) + _f.Preco_A78 + _ac.Preco_A78) * Quantidade;
-            Preco_HT231 = (_c.Sum(x => x.Preco_HT231) + _isopor.Preco_HT231 + _f.Preco_HT231 + _ac.Preco_HT231 + _eva.Preco_HT231) * Quantidade;
-            Preco_HT365 = (_c.Sum(x => x.Preco_HT365) + _isopor.Preco_HT365 + _f.Preco_HT365 + _ac.Preco_HT365 + _eva.Preco_HT365) * Quantidade;
-            Preco_AntiBolha = (_c.Sum(x => x.Preco_AntiBolha) + _f.Preco_AntiBolha + _ac.Preco_AntiBolha) * Quantidade;
-            Preco_K10 = (_c.Sum(x => x.Preco_K10) + _f.Preco_K10 + _ac.Preco_K10) * Quantidade;
-            Preco_Pigmento = (_c.Sum(x => x.Preco_Pigmento) + _f.Preco_Pigmento + _ac.Preco_Pigmento) * Quantidade;
-            Preco_Cadarco = (_c.Sum(x => x.Preco_Cadarco) + _isopor.Preco_Cadarco + _f.Preco_Cadarco + _ac.Preco_Cadarco) * Quantidade;
-            Preco_Fio = (_c.Sum(x => x.Preco_Fio) + _f.Preco_Fio + _ac.Preco_Fio) * Quantidade;
+            Preco_Resina = (_camisas.Sum(x => x.Preco_Resina) + _selagem.Preco_Resina + _f.Preco_Resina + _ac.Preco_Resina + _eva.Preco_Resina) * Quantidade;
+            Preco_HL918 = (_camisas.Sum(x => x.Preco_HL918) + _f.Preco_HL918 + _ac.Preco_HL918) * Quantidade;
+            Preco_A78 = (_camisas.Sum(x => x.Preco_A78) + _f.Preco_A78 + _ac.Preco_A78) * Quantidade;
+            Preco_HT231 = (_camisas.Sum(x => x.Preco_HT231) + _selagem.Preco_HT231 + _f.Preco_HT231 + _ac.Preco_HT231 + _eva.Preco_HT231) * Quantidade;
+            Preco_HT365 = (_camisas.Sum(x => x.Preco_HT365) + _selagem.Preco_HT365 + _f.Preco_HT365 + _ac.Preco_HT365 + _eva.Preco_HT365) * Quantidade;
+            Preco_AntiBolha = (_camisas.Sum(x => x.Preco_AntiBolha) + _f.Preco_AntiBolha + _ac.Preco_AntiBolha) * Quantidade;
+            Preco_K10 = (_camisas.Sum(x => x.Preco_K10) + _f.Preco_K10 + _ac.Preco_K10) * Quantidade;
+            Preco_Pigmento = (_camisas.Sum(x => x.Preco_Pigmento) + _f.Preco_Pigmento + _ac.Preco_Pigmento) * Quantidade;
+            Preco_Cadarco = (_camisas.Sum(x => x.Preco_Cadarco) + _selagem.Preco_Cadarco + _f.Preco_Cadarco + _ac.Preco_Cadarco) * Quantidade;
+            Preco_Fio = (_camisas.Sum(x => x.Preco_Fio) + _f.Preco_Fio + _ac.Preco_Fio) * Quantidade;
             Preco_EVA = Eva.Preco_EVA * Quantidade;
-            Preco_Resina101F = (_c.Sum(x => x.Preco_Resina101F) + Isopor.Preco_Resina101F) * Quantidade;
+            Preco_Resina101F = (_camisas.Sum(x => x.Preco_Resina101F) + Selagem.Preco_Resina101F) * Quantidade;
             Preco_Total_Anel = Preco_Anel * Quantidade;
             Preco_Total_Embalagem = Preco_Embalagem * Quantidade;
             Preco_Total_Isopor = Preco_Isopor * Quantidade;
 
 
-            Peso_Resina = ((_c.Sum(x => x.Peso_Resina) +_isopor.Peso_Resina + _f.Peso_Resina + _ac.Peso_Resina + _eva.Peso_Resina) * Quantidade);
-            Peso_HL918 = ((_c.Sum(x => x.Peso_HL918) + _f.Peso_HL918 + _ac.Peso_HL918) * Quantidade);
-            Peso_A78 = ((_c.Sum(x => x.Peso_A78) + _f.Peso_A78 + _ac.Peso_A78) * Quantidade);
-            Peso_HT231 = ((_c.Sum(x => x.Peso_HT231) + _isopor.Peso_HT231 + _f.Peso_HT231 + _ac.Peso_HT231 + _eva.Peso_HT231) * Quantidade);
-            Peso_HT365 = ((_c.Sum(x => x.Peso_HT365) + _isopor.Peso_HT365 + _f.Peso_HT365 + _ac.Peso_HT365 + _eva.Peso_HT365) * Quantidade);
-            Peso_AntiBolha = ((_c.Sum(x => x.Peso_AntiBolha) + _f.Peso_AntiBolha + _ac.Peso_AntiBolha) * Quantidade);
-            Peso_K10 = ((_c.Sum(x => x.Peso_K10) + _f.Peso_K10 + _ac.Peso_K10) * Quantidade);
-            Peso_Pigmento = ((_c.Sum(x => x.Peso_Pigmento) + _f.Peso_Pigmento + _ac.Peso_Pigmento) * Quantidade);
-            Peso_Cadarco = ((_c.Sum(x => x.Peso_Cadarco) + _isopor.Peso_Cadarco + _f.Peso_Cadarco + _ac.Peso_Cadarco) * Quantidade);
-            Peso_Fio = ((_c.Sum(x => x.Peso_Fio) + _f.Peso_Fio + _ac.Peso_Fio) * Quantidade);
-            Peso_Total = ((_c.Sum(x => x.Peso_Total) + _f.Peso_Total + _ac.Peso_Total + _isopor.Peso_Total + Eva.Peso_Total) * Quantidade);
-            Peso_Resina101F = (_c.Sum(x => x.Peso_Resina101F) + Isopor.Peso_Resina101F) * Quantidade;
+            Peso_Resina = ((_camisas.Sum(x => x.Peso_Resina) +_selagem.Peso_Resina + _f.Peso_Resina + _ac.Peso_Resina + _eva.Peso_Resina) * Quantidade);
+            Peso_HL918 = ((_camisas.Sum(x => x.Peso_HL918) + _f.Peso_HL918 + _ac.Peso_HL918) * Quantidade);
+            Peso_A78 = ((_camisas.Sum(x => x.Peso_A78) + _f.Peso_A78 + _ac.Peso_A78) * Quantidade);
+            Peso_HT231 = ((_camisas.Sum(x => x.Peso_HT231) + _selagem.Peso_HT231 + _f.Peso_HT231 + _ac.Peso_HT231 + _eva.Peso_HT231) * Quantidade);
+            Peso_HT365 = ((_camisas.Sum(x => x.Peso_HT365) + _selagem.Peso_HT365 + _f.Peso_HT365 + _ac.Peso_HT365 + _eva.Peso_HT365) * Quantidade);
+            Peso_AntiBolha = ((_camisas.Sum(x => x.Peso_AntiBolha) + _f.Peso_AntiBolha + _ac.Peso_AntiBolha) * Quantidade);
+            Peso_K10 = ((_camisas.Sum(x => x.Peso_K10) + _f.Peso_K10 + _ac.Peso_K10) * Quantidade);
+            Peso_Pigmento = ((_camisas.Sum(x => x.Peso_Pigmento) + _f.Peso_Pigmento + _ac.Peso_Pigmento) * Quantidade);
+            Peso_Cadarco = ((_camisas.Sum(x => x.Peso_Cadarco) + _selagem.Peso_Cadarco + _f.Peso_Cadarco + _ac.Peso_Cadarco) * Quantidade);
+            Peso_Fio = ((_camisas.Sum(x => x.Peso_Fio) + _f.Peso_Fio + _ac.Peso_Fio) * Quantidade);
+            Peso_Total = ((_camisas.Sum(x => x.Peso_Total) + _f.Peso_Total + _ac.Peso_Total + _selagem.Peso_Total + Eva.Peso_Total) * Quantidade);
+            Peso_Resina101F = (_camisas.Sum(x => x.Peso_Resina101F) + Selagem.Peso_Resina101F) * Quantidade;
 
-            Bobinas_Cadarco = (_c.Sum(x => x.Metros_Cadarco) + _isopor.Metros_Cadarco) / 50 * Quantidade;
-            Metros_Cadarco = (_c.Sum(x => x.Metros_Cadarco) + _isopor.Metros_Cadarco) * Quantidade;
-            Preco_Total = (_c.Sum(x => x.Preco_Total) + _isopor.Preco_Total + Eva.Preco_Total + 
+            Bobinas_Cadarco = (_camisas.Sum(x => x.Metros_Cadarco) + _selagem.Metros_Cadarco) / 50 * Quantidade;
+            Metros_Cadarco = (_camisas.Sum(x => x.Metros_Cadarco) + _selagem.Metros_Cadarco) * Quantidade;
+            Preco_Total = (_camisas.Sum(x => x.Preco_Total) + _selagem.Preco_Total + Eva.Preco_Total + 
                            _f.Preco_Total + _ac.Preco_Total + Preco_Anel + Preco_Embalagem + Preco_Isopor ) * Quantidade;
         }
-
-
-        public Peça(Camisa camisa_1, Camisa camisa_2, Isopor Isopor, Filamento filamento, Acabamento acabamento, Eva eva)
-        {
-            _c = new List<Camisa>();
-            _c.Add(camisa_1);
-            _c.Add(camisa_2);
-            _isopor = Isopor;
-
-            _f = filamento;
-            _ac = acabamento;
-            _eva = eva;
-            _quantidade = 1;
-        }
-
-
-        public Peça()
-        {
-
-        }
-
     }
 }

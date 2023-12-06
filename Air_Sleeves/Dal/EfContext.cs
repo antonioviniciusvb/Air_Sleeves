@@ -27,7 +27,7 @@ namespace Air_Sleeves.Dal
             //Caso não tenha itens, preencha com valores default
             if (!(material.Any()))
             {
-                material.Add(new Material { Id = 1, Id_Und_Medida = 1, Nome = "Resina", Preco = 109.00F });
+                material.Add(new Material { Id = 1, Id_Und_Medida = 1, Nome = "Resina 102", Preco = 109.00F });
 
                 material.Add(new Material { Id = 2, Id_Und_Medida = 1, Nome = "HL918", Preco = 87.00F });
                 material.Add(new Material { Id = 3, Id_Und_Medida = 1, Nome = "A78", Preco = 177.00F });

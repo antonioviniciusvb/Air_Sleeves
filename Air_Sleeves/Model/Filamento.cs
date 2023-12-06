@@ -64,11 +64,11 @@ namespace Air_Sleeves.Model
             
             this.Composto_Resina = Calc_Composto_Resina();
             
-            Calc_Itens();
+            CalculaItens();
             
         }
 
-        public void calc_Valores_Filamento(Camisa camisa_1, Isopor isopor)
+        public void CalculaValores(Camisa camisa_1, Isopor isopor)
         {
             LimpaTotais();
 
@@ -81,7 +81,7 @@ namespace Air_Sleeves.Model
 
             this.Composto_Resina = Calc_Composto_Resina();
 
-            Calc_Itens();
+            CalculaItens();
 
         }
 

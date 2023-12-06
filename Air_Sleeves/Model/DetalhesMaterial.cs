@@ -39,6 +39,9 @@ namespace Air_Sleeves.Model
         public decimal Preco_Resina101F { get; set; }
         public decimal Peso_Resina101F { get; set; }
 
+        public decimal Preco_Resina101F_2 { get; set; }
+        public decimal Peso_Resina101F_2 { get; set; }
+
         #endregion
 
         #region HL918
@@ -59,6 +62,9 @@ namespace Air_Sleeves.Model
 
         public decimal Preco_HT231 { get; set; }
         public decimal Peso_HT231 { get; set; }
+
+        public decimal Preco_HT231_2 { get; set; }
+        public decimal Peso_HT231_2 { get; set; }
 
         #endregion
 
@@ -142,7 +148,7 @@ namespace Air_Sleeves.Model
             return pct_Total;
         }
 
-        protected void Calc_Itens()
+        public virtual void CalculaItens()
         {
             //Resina
             int id = 1;
@@ -261,41 +267,7 @@ namespace Air_Sleeves.Model
 
         }
 
-        protected void Calc_Itens_Isopor()
-        {
-            //Resina
-            int id = 15;
-
-            var preco_Resina = preco_Material(id);
-            var pct_Resina = percentual_Material(id);
-
-            var Peso_Resina_1 = Calculo.MultiplicaDivide(this.Composto_Resina, pct_Resina, Pct_Total_Materiais, 3);
-            var Peso_Resina_2 = Calculo.MultiplicaDivide(this.Composto_Resina_2, pct_Resina, Pct_Total_Materiais, 3);
-
-            this.Peso_Resina101F = Peso_Resina_1 + Peso_Resina_2;
-
-            this.Preco_Resina101F = Calculo.Multiplica(Peso_Resina101F, preco_Resina, 2);
-
-            //HT231
-            id = 4;
-
-            var preco_HT231 = preco_Material(id);
-            var pct_HT231 = percentual_Material(id);
-
-            var Peso_HT231_1 = Calculo.MultiplicaDivide(this.Composto_Resina, pct_HT231, Pct_Total_Materiais, 3);      
-            var Peso_HT231_2 = Calculo.MultiplicaDivide(this.Composto_Resina_2, pct_HT231, Pct_Total_Materiais, 3);
-
-            this.Peso_HT231 = Peso_HT231_1 + Peso_HT231_2;
-
-            this.Preco_HT231 = Calculo.Multiplica(this.Peso_HT231, preco_HT231, 2);
-
-            this.Peso_Total = Peso_Total + Peso_Resina101F + Peso_HT231;            
-            this.Preco_Total = Preco_Total + Preco_HT231 + Preco_Resina101F;
-
-        }
-
-
-        protected void Calc_EVA(decimal  fator, bool type)
+        public void CalculaEVA(decimal  fator, bool type)
         {
             var p_EVA = preco_Material(14);
 

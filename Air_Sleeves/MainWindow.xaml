@@ -301,11 +301,11 @@
 
                                 <DockPanel Grid.Row="9" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">
                                     <TextBlock>Interna:</TextBlock>
-                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Isopor.Interna, StringFormat={}{0:N}}"></TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Selagem.Interna, StringFormat={}{0:N}}"></TextBlock>
                                     <TextBlock Margin="10,0,0,0">Externa:</TextBlock>
-                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Isopor.Externa, StringFormat={}{0:N}}"></TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Selagem.Externa, StringFormat={}{0:N}}"></TextBlock>
                                     <TextBlock Margin="10,0,0,0">Comprimento:</TextBlock>
-                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Isopor.Comprimento, StringFormat={}{0:N}}"></TextBlock>
+                                    <TextBlock Margin="5,0,0,0" Text="{Binding Peca.Selagem.Comprimento, StringFormat={}{0:N}}"></TextBlock>
                                 </DockPanel>
 
                                 <Grid x:Name="grdCamisa_3" Margin="0,5,0,0" Grid.Row="10">
@@ -320,12 +320,12 @@
 
                                         <DockPanel>
                                             <TextBlock Width="70" TextAlignment="Right">Metros:</TextBlock>
-                                            <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Peca.Isopor.Metros_Cadarco, StringFormat={}{0} m}"/>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Blue" Text="{Binding Peca.Selagem.Metros_Cadarco, StringFormat={}{0} m}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="70" TextAlignment="Right">Peso:</TextBlock>
-                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Isopor.Peso_Cadarco, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="30,0,0,0" Foreground="Red" Text="{Binding Peca.Selagem.Peso_Cadarco, StringFormat={}{0} kg}"/>
                                         </DockPanel>
                                     </StackPanel>
 
@@ -333,28 +333,28 @@
                                         <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">COMPOSTO</TextBlock>
 
                                         <DockPanel>
-                                            <TextBlock Width="120" TextAlignment="Right">COLA 100% - RK101F:</TextBlock>
-                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Isopor.Peso_Resina101F, StringFormat={}{0} kg}"/>
+                                            <TextBlock Width="120" TextAlignment="Right">COLA 100% - RK102:</TextBlock>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Selagem.Peso_Resina, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="120" TextAlignment="Right">COLA 20% - HT231:</TextBlock>
-                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Isopor.Peso_HT231, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Selagem.Peso_HT231, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="120" TextAlignment="Right">100% - RESINA 101F:</TextBlock>
-                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Isopor.Peso_Resina101F, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Colagem.Peso_Resina101F, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="120" TextAlignment="Right">20% - HT231:</TextBlock>
-                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Isopor.Peso_HT231, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="20,0,0,0" Foreground="Red" Text="{Binding Peca.Colagem.Peso_HT231, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                         <DockPanel Margin="0,5,0,0">
                                             <TextBlock FontWeight="Bold">Total</TextBlock>
-                                            <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Peca.Isopor.Composto_Resina, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="10,0,0,0" Foreground="Red" Text="{Binding Peca.Isopor.Peso_Total, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                     </StackPanel>
@@ -363,28 +363,28 @@
                                         <TextBlock Background="Azure" TextAlignment="Center" FontWeight="Bold" FontSize="12" HorizontalAlignment="Stretch">VALOR PEÇAS</TextBlock>
 
                                         <DockPanel>
-                                            <TextBlock Width="100" TextAlignment="Right">COLA - RK 101F:</TextBlock>
-                                            <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Peca.Isopor.Preco_Resina101F, StringFormat=R$ {0:N}}"/>
+                                            <TextBlock Width="100" TextAlignment="Right">COLA - RK 102:</TextBlock>
+                                            <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Peca.Selagem.Preco_Resina, StringFormat=R$ {0:N}}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="100" TextAlignment="Right">COLA - HT231:</TextBlock>
-                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Isopor.Preco_HT231, StringFormat=R$ {0:N}}"/>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Selagem.Preco_HT231, StringFormat=R$ {0:N}}"/>
                                         </DockPanel>
                                         
                                         <DockPanel>
                                             <TextBlock Width="100" TextAlignment="Right">CADARÇO:</TextBlock>
-                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Isopor.Preco_Cadarco, StringFormat=R$ {0:N}}"/>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Colagem.Preco_Cadarco, StringFormat=R$ {0:N}}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="100" TextAlignment="Right">RK 101F:</TextBlock>
-                                            <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Peca.Isopor.Preco_Resina101F, StringFormat=R$ {0:N}}"/>
+                                            <TextBlock Margin="40,0,0,0"  Foreground="Green" Text="{Binding Peca.Colagem.Preco_Resina101F, StringFormat=R$ {0:N}}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Width="100" TextAlignment="Right">HT231:</TextBlock>
-                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Isopor.Preco_HT231, StringFormat=R$ {0:N}}"/>
+                                            <TextBlock Margin="40,0,0,0" Foreground="Green" Text="{Binding Peca.Colagem.Preco_HT231, StringFormat=R$ {0:N}}"/>
                                         </DockPanel>
 
                                         <DockPanel>

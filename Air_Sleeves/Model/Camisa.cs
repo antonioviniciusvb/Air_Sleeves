@@ -48,7 +48,7 @@ namespace Air_Sleeves.Model
         }
 
         #region Cadarco
-        private void Calc_MetrosCadarco()
+        private void CalculaMetrosCadarco()
         {
             decimal aux = this.Interna;
 
@@ -61,20 +61,14 @@ namespace Air_Sleeves.Model
             this.Metros_Cadarco = Math.Round((Math.Round(parametro_1 * parametro_2) / 100) * voltas) ;
         }
 
-        //private void Calc_Qntd_Bobinas()
-        //{
-        //    //há 50 metros de cardaço por bobina
-        //    this.Bobinas_Cadarco = Math.Round(this.Metros_Cadarco / 50, 2);
-        //}
-
-        private void Calc_Peso_Cadarco()
+        private void CalculaPesoCadarco()
         {
             //Metros * Constante 0.0075
             this.Peso_Cadarco = Calculo.Multiplica(this.Metros_Cadarco, 0.0075M, 3);
             this.Peso_Total = Peso_Total + Peso_Cadarco;
         }
 
-        private void Calc_Preco_Cadarco()
+        private void CalculaPrecoCadarco()
         {
             //Cardaço
             int id = 11;
@@ -86,27 +80,26 @@ namespace Air_Sleeves.Model
             this.Preco_Total = this.Preco_Total + Preco_Cadarco;
         }
 
-        private void Calc_Valores_Cadarco()
+        private void CalculaValoresCadarco()
         {
-            Calc_MetrosCadarco();
-            Calc_Peso_Cadarco();
-            Calc_Preco_Cadarco();
-            //Calc_Qntd_Bobinas();
+            CalculaMetrosCadarco();
+            CalculaPesoCadarco();
+            CalculaPrecoCadarco();
         }
 
-        private void Calc_Composto()
+        private void CalculaComposto()
         {
             //Tenho que verificar pq muda da 3º camisa para as demais
             decimal fatorComposto = 0.0075M;
             this.Composto_Resina = Calculo.Multiplica(this.Metros_Cadarco, fatorComposto, 3);
         }
 
-        public void Calc_Valores_Camisa()
+        public void CalculaValores()
         {
             LimpaTotais();
-            Calc_Valores_Cadarco();
-            Calc_Composto();
-            Calc_Itens();
+            CalculaValoresCadarco();
+            CalculaComposto();
+            CalculaItens();
         }
 
         #endregion

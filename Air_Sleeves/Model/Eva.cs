@@ -29,8 +29,8 @@ namespace Air_Sleeves.Model
         {
             LimpaTotais();
             calc_CompostoResina(interna, comprimento);
-            Calc_Itens();
-            Calc_EVA(fatorPesoResina, type);
+            CalculaItens();
+            CalculaEVA(fatorPesoResina, type);
         }
 
         //public decimal Comprimento { get; set; }
