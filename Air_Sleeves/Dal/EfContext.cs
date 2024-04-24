@@ -43,7 +43,7 @@ namespace Air_Sleeves.Dal
                 material.Add(new Material { Id = 13, Id_Und_Medida = 1, Nome = "EMBALAGEM", Preco = 0.00F });
                 material.Add(new Material { Id = 14, Id_Und_Medida = 1, Nome = "EVA", Preco = 8.00F });
                 material.Add(new Material { Id = 15, Id_Und_Medida = 1, Nome = "Resina 101F", Preco = 114.00F });
-                material.Add(new Material { Id = 16, Id_Und_Medida = 1, Nome = "HT365", Preco = 108.00F });
+                material.Add(new Material { Id = 16, Id_Und_Medida = 1, Nome = "HT356", Preco = 108.00F });
 
             }
 
