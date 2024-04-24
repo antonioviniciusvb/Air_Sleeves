@@ -10,24 +10,24 @@ namespace Air_Sleeves.Model
 {
     public class Camisa: DetalhesMaterial
     {
-
-        public Camisa(decimal interna, decimal externa, decimal com, int numero_Camisa)
-        {
-            Interna = interna;
-            Externa = externa;
-            Comprimento = com;
-
-            this.num_Camisa = numero_Camisa;
-        }
-
-        public int num_Camisa { get; set; }
-    
         public decimal Interna { get; set; }
 
         public decimal Externa { get; set; }
 
         public decimal Comprimento { get; set; }
 
+        public decimal Voltas { get; set; }
+
+        public Camisa()
+        {
+        }
+
+        public Camisa(decimal interna, decimal externa, decimal comprimento)
+        {
+            Interna = interna;
+            Externa = externa;
+            Comprimento = comprimento;
+        }
 
         private void OnInternaChanged()
         {
@@ -47,28 +47,30 @@ namespace Air_Sleeves.Model
                 Comprimento = 0;
         }
 
-        #region Cadarco
-        private void CalculaMetrosCadarco()
+        private void OnVoltasChanged()
         {
-            decimal aux = this.Interna;
-
-            var voltas = this.num_Camisa == 1 ? 1 : 0.8m;
-
-            decimal parametro_1 = Math.Round(Calculo.pi * aux);
-
-            decimal parametro_2 = Math.Round(this.Comprimento / 40);
-
-            this.Metros_Cadarco = Math.Round((Math.Round(parametro_1 * parametro_2) / 100) * voltas) ;
+            if(Voltas <= 0 || Voltas > 40)
+                Voltas = 0;
         }
 
-        private void CalculaPesoCadarco()
+        #region Cadarco
+        public virtual void CalculaMetrosCadarco()
+        {
+            decimal parametro_1 = Math.Round(Calculo.pi * Interna, 2);
+
+            decimal parametro_2 = Math.Round(Comprimento / 40, 2);
+
+            Metros_Cadarco = Math.Ceiling((parametro_1 * parametro_2 * Voltas) / 1000);
+        }
+
+        public virtual void CalculaPesoCadarco(decimal constante = 0.0075M)
         {
             //Metros * Constante 0.0075
-            this.Peso_Cadarco = Calculo.Multiplica(this.Metros_Cadarco, 0.0075M, 3);
-            this.Peso_Total = Peso_Total + Peso_Cadarco;
+            Peso_Cadarco = Calculo.Multiplica(Metros_Cadarco, constante, 3);
+            Peso_Total = Peso_Total + Peso_Cadarco;
         }
 
-        private void CalculaPrecoCadarco()
+        public virtual void CalculaPrecoCadarco()
         {
             //Cardaço
             int id = 11;
@@ -76,30 +78,39 @@ namespace Air_Sleeves.Model
             //11 -- id cardaco
             var preco_Cadarco = preco_Material(id);
 
-            this.Preco_Cadarco = Calculo.DivideMultiplica(this.Metros_Cadarco, 50, preco_Cadarco, 2);
-            this.Preco_Total = this.Preco_Total + Preco_Cadarco;
+            Preco_Cadarco = Calculo.DivideMultiplica(Metros_Cadarco, 50, preco_Cadarco, 2);
+            Preco_Total = Preco_Total + Preco_Cadarco;
         }
 
-        private void CalculaValoresCadarco()
+        public virtual void CalculaValoresCadarco()
         {
             CalculaMetrosCadarco();
             CalculaPesoCadarco();
             CalculaPrecoCadarco();
         }
 
-        private void CalculaComposto()
+        public virtual void CalculaComposto(decimal fatorComposto = 0.0075M)
         {
             //Tenho que verificar pq muda da 3º camisa para as demais
-            decimal fatorComposto = 0.0075M;
-            this.Composto_Resina = Calculo.Multiplica(this.Metros_Cadarco, fatorComposto, 3);
+             
+            Composto_Resina = Calculo.Multiplica(Metros_Cadarco, fatorComposto, 3);
         }
 
-        public void CalculaValores()
+        public virtual void CalculaValores()
         {
             LimpaTotais();
             CalculaValoresCadarco();
             CalculaComposto();
             CalculaItens();
+        }
+
+        public override void LimpaValores()
+        {
+            base.LimpaValores();
+            Interna = 0;
+            Externa = 0;
+            Comprimento = 0;     
+            Voltas = 0;
         }
 
         #endregion
