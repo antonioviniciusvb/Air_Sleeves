@@ -7,33 +7,25 @@ using System.ComponentModel;
 
 namespace Air_Sleeves.Model
 {
-    public class Eva: DetalhesMaterial
+    public class Eva: Camisa
     {
         decimal fatorPesoResina;
+        public decimal Preco { get; set; }
 
-        public Eva()
+        public void CalculaComposto()
         {
-        }
-
-        private void calc_CompostoResina(decimal c_interna, decimal comprimento)
-        {
-            var parametro_1 = (c_interna * Calculo.pi);
-
-            fatorPesoResina = Math.Round((parametro_1 * comprimento) / 1000, 2);
+            decimal parametro_1 = Math.Round(Calculo.pi * Interna, 2);         
+            fatorPesoResina = Math.Round((parametro_1 * Comprimento) / 1000, 2);
 
             this.Composto_Resina = Math.Round(fatorPesoResina * 0.0002M, 3);
-
         }
 
-        public void calc_Valores_Eva(decimal interna, decimal comprimento, bool type)
+        public override void CalculaValores()
         {
             LimpaTotais();
-            calc_CompostoResina(interna, comprimento);
+            CalculaComposto();
             CalculaItens();
-            CalculaEVA(fatorPesoResina, type);
-        }
-
-        //public decimal Comprimento { get; set; }
-        public decimal Preco { get; set; }
+            CalculaEVA(fatorPesoResina);
+        }      
     }
 }
