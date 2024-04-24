@@ -15,10 +15,8 @@ namespace Air_Sleeves.ViewModel
 {
     public class ViewModel : BaseInotifyPropertyChanged
     {
-        public Camisa Camisa { get; set; }
         public Peca Peca { get; set; }
         public Peca AuxPeca {  get; set; }
-
         public bool CalculaSegundaCamisa { get; set; }
         public bool CalculaEva { get; set; }
         public bool CalculaIsopor { get; set; }
@@ -81,21 +79,8 @@ namespace Air_Sleeves.ViewModel
         {
             CalculaSegundaCamisa = CalculaEva = CalculaIsopor = CalculaFilamento = CalculaAcabamento = true;
 
-            Peca = new Peca(new Camisa(0, 0, 0),
-                             new Camisa(0, 0, 0),
-                             new Isopor(),
-                             new Isopor(),
-                             new Filamento(),
-                             new Acabamento(),
-                             new Eva());
-            
-            AuxPeca = new Peca(new Camisa(0, 0, 0),
-                             new Camisa(0, 0, 0),
-                             new Isopor(),
-                             new Isopor(),
-                             new Filamento(),
-                             new Acabamento(),
-                             new Eva());
+            Peca = new Peca();
+            AuxPeca = new Peca();
 
             AuxPeca.Camisas_1.Voltas = 10;
             AuxPeca.Camisas_2.Voltas = 8;
@@ -259,7 +244,6 @@ namespace Air_Sleeves.ViewModel
         private void Clear()
         {
             Peca.Limpar();
-            Peca.LimpaMaterial();
         }
     }
 }
