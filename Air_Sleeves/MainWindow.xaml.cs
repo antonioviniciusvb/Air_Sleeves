@@ -42,15 +42,6 @@ namespace Air_Sleeves
             using (var contexto = new EfContext())
             {
                 contexto.SaveChanges();
-
-                //var query = from m in contexto.material.ToList()
-                //            where m.Id == 1 
-                //            select m;
-
-                //foreach (var item in query)
-                //{
-
-                //}
             }
 
             this._viewModel = new ViewModel.ViewModel();
