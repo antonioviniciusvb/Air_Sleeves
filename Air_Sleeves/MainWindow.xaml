@@ -431,12 +431,12 @@
 
                                         <DockPanel Margin="0,20,0,10">
                                             <TextBlock Margin="40,0,0,0" FontWeight="Bold" Width="70" TextAlignment="Right">Calculo A:</TextBlock>
-                                            <TextBlock Margin="30,0,0,0" Foreground="#FF7C7C01" Text="{Binding Peca.Filamento.Filamento_A, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="30,0,0,0" Foreground="#FF7C7C01" Text="{Binding Peca.Filamento.FilamentoA, StringFormat={}{0} kg}"/>
                                         </DockPanel>
 
                                         <DockPanel>
                                             <TextBlock Margin="40,0,0,0" FontWeight="Bold" Width="70" TextAlignment="Right">Calculo B:</TextBlock>
-                                            <TextBlock Margin="30,0,0,0" Foreground="#FF7C7C01" Text="{Binding Peca.Filamento.Filamento_B, StringFormat={}{0} kg}"/>
+                                            <TextBlock Margin="30,0,0,0" Foreground="#FF7C7C01" Text="{Binding Peca.Filamento.FilamentoB, StringFormat={}{0} kg}"/>
                                         </DockPanel>
                                     </StackPanel>
 
