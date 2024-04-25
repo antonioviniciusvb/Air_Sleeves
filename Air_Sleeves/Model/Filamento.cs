@@ -25,7 +25,6 @@ namespace Air_Sleeves.Model
         public decimal FilamentoA { get; set; }
         public decimal FilamentoB { get; set; }
 
-
         private decimal CalculaFilamentoA(Isopor isopor)
         {
             decimal ext_quadrado = Calculo.Eleva_Ao_Quadrado(isopor.Externa);
@@ -42,12 +41,10 @@ namespace Air_Sleeves.Model
 
             return Calculo.Multiplica((Calculo.pi / 4), camisa1.Comprimento, (ext_1_quadrado - ext_3_quadrado), fatorFilamento, 3);
         }
-
         private decimal CalculaCompostoResinaFio()
         {
              return this.FilamentoA + this.FilamentoB;
         }
-
         private decimal CalculaCompostoResina()
         {
             return (this.Composto_Resina_Fio - this.Peso_Fio) + 0.7M;
@@ -64,7 +61,6 @@ namespace Air_Sleeves.Model
             Composto_Resina = CalculaCompostoResina();
             
             CalculaItens();
-            
         }
 
         public void CalculaValores(Camisa camisa_1, Isopor isopor)
@@ -78,27 +74,10 @@ namespace Air_Sleeves.Model
 
             CalculaValoresFio();
 
-            Composto_Resina = CalculaCompostoResina();
+            //Isso irá aumentar o custo em 10% de todos os produtos, exceto o FIO
+            Composto_Resina = Calculo.Adiciona_Percentual(CalculaCompostoResina(), 10, 3);
 
             CalculaItens();
-
-        }
-
-        public void Adiciona10pct()
-        {
-            Composto_Resina = Calculo.Adiciona_Percentual(Composto_Resina, 10, 3);
-            Peso_Resina = Calculo.Adiciona_Percentual(Peso_Resina, 10, 3);
-            Peso_HL918 = Calculo.Adiciona_Percentual(Peso_HL918, 10, 3);
-            Peso_A78 = Calculo.Adiciona_Percentual(Peso_A78, 10, 3);
-            Peso_Pigmento = Calculo.Adiciona_Percentual(Peso_Pigmento, 10, 3);
-
-            Preco_Resina = Calculo.Adiciona_Percentual(Preco_Resina, 10, 3);
-            Preco_HL918 = Calculo.Adiciona_Percentual(Preco_HL918, 10, 3);
-            Preco_A78 = Calculo.Adiciona_Percentual(Preco_A78, 10, 3);
-            Preco_Pigmento = Calculo.Adiciona_Percentual(Preco_Pigmento, 10, 3);
-
-            Preco_Total = Preco_Pigmento + Preco_A78 + Preco_HL918 + Preco_Resina + Preco_Fio;
-            Peso_Total = Composto_Resina + Peso_Fio;
         }
 
         private void CalculaValoresFio()
