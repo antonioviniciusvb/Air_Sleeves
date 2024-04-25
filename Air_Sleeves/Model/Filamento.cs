@@ -1,8 +1,4 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using PropertyChanged;
-using Air_Sleeves.Util;
+﻿using Air_Sleeves.Util;
 
 
 namespace Air_Sleeves.Model
@@ -49,20 +45,6 @@ namespace Air_Sleeves.Model
         {
             return (this.Composto_Resina_Fio - this.Peso_Fio) + 0.7M;
         }
-
-        public void CalculaValoresFilamento()
-        {
-            LimpaTotais();
-
-            Composto_Resina_Fio = CalculaCompostoResinaFio();
-
-            CalculaValoresFio();
-            
-            Composto_Resina = CalculaCompostoResina();
-            
-            CalculaItens();
-        }
-
         public void CalculaValores(Camisa camisa_1, Isopor isopor)
         {
             LimpaTotais();

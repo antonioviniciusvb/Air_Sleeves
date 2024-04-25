@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
-using PropertyChanged;
 using Air_Sleeves.Util;
-using System.ComponentModel;
 
 namespace Air_Sleeves.Model
 {

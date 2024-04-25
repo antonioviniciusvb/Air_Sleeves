@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Air_Sleeves.Model;
 using Air_Sleeves.Dal;
 using Air_Sleeves.Util;
-using System.ComponentModel;
-using System.Diagnostics;
 using System.Windows;
 
 namespace Air_Sleeves.ViewModel
@@ -94,9 +87,6 @@ namespace Air_Sleeves.ViewModel
 
             Limpar = new Command(Clear, () => { return true; });
         }
-
-
-
         private void simula_Orcamento()
         {
             Clear();
@@ -155,7 +145,9 @@ namespace Air_Sleeves.ViewModel
 
                     Peca.Eva.CalculaValores();
 
-                }                #endregion
+                }
+
+                #endregion
 
                 #region 1ª Camisa
                 Peca.Camisas_1.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
@@ -215,24 +207,20 @@ namespace Air_Sleeves.ViewModel
                 }
                 #endregion
 
+                #region Acabamento
+
                 if (CalculaAcabamento)
                 {
-                    #region Acabamento
                     Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
                     Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 4).ToList<Material>(), 20);
                     Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 5).ToList<Material>(), 2);
                     Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 6).ToList<Material>(), 10);
                     Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 7).ToList<Material>(), 2);
-                    #endregion
+                    
                     Peca.Acabamento.CalculaValores(Peca.Camisas_1, Peca.Selagem);
-                    Peca.Acabamento.Adiciona25pct();
                 }
 
-                //if (Peca.Type == false)
-                //{
-                //    Peca.Filamento.Adiciona10pct();
-                //    Peca.Acabamento.Adiciona25pct();
-                //}
+                #endregion
 
                 Peca.Quantidade = 1;
                 Peca.CalculaValores();

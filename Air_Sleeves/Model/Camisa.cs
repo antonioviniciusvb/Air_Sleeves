@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using PropertyChanged;
 using Air_Sleeves.Util;
 
 namespace Air_Sleeves.Model

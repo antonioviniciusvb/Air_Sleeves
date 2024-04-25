@@ -1,8 +1,5 @@
 ﻿using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using PropertyChanged;
-using System.Threading.Tasks;
 using Air_Sleeves.Util;
 using System.Collections.Generic;
 using System;
