@@ -15,7 +15,7 @@
             <TabItem Header="Calculo">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="200"></RowDefinition>
+                        <RowDefinition Height="150"></RowDefinition>
                         <RowDefinition></RowDefinition>
 
                     </Grid.RowDefinitions>
@@ -39,8 +39,6 @@
                             <Controls:NumericUpDown Value="{Binding AuxPeca.Camisas_1.Voltas}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Voltas 1º Camisa" ToolTip="Voltas 1º Camisa" Margin="10,0,0,0" TabIndex="9"></Controls:NumericUpDown>
                             <Controls:NumericUpDown Value="{Binding AuxPeca.Camisas_2.Voltas}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Voltas 2º Camisa" ToolTip="Voltas 2º Camisa" Margin="10,0,0,0" TabIndex="10"></Controls:NumericUpDown>
                             <Controls:NumericUpDown Value="{Binding AuxPeca.Selagem.Voltas}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="Voltas Selagem" ToolTip="Voltas Selagem" Margin="10,0,0,0" TabIndex="11"></Controls:NumericUpDown>
-                        </DockPanel>
-                        <DockPanel Margin="5" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <Controls:NumericUpDown Value="{Binding Peca.Preco_Anel}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="ANEL" ToolTip="Valor Anel" Margin="10,0,0,0" StringFormat="{}{0:N}" TabIndex="13"></Controls:NumericUpDown>
                             <Controls:NumericUpDown Value="{Binding Peca.Preco_Isopor}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="ISOPOR" ToolTip="Valor Isopor" Margin="10,0,0,0" StringFormat="{}{0:N}" TabIndex="14"></Controls:NumericUpDown>
                             <Controls:NumericUpDown Value="{Binding Peca.Preco_Embalagem}" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.Watermark="EMBALAGEM" ToolTip="Valor Embalagem" Margin="10,0,0,0" StringFormat="{}{0:N}" TabIndex="15"></Controls:NumericUpDown>
