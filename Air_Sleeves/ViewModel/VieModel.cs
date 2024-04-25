@@ -212,7 +212,6 @@ namespace Air_Sleeves.ViewModel
                     Peca.Filamento.AddMaterial(contexto.material.Where(x => x.Id == 12).ToList<Material>(), 0);
 
                     Peca.Filamento.CalculaValores(Peca.Camisas_1, Peca.Selagem);
-                    Peca.Filamento.Adiciona10pct();
                 }
                 #endregion
 

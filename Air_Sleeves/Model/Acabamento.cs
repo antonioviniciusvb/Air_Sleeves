@@ -6,20 +6,17 @@ using Air_Sleeves.Util;
 
 namespace Air_Sleeves.Model
 {
-    public class Acabamento: DetalhesMaterial
+    public class Acabamento: Camisa
     {
         decimal ft_Acabamento = 0.00000011M;
-
-        public Acabamento(Camisa camisa_1, Isopor isopor)
-        {
-           this.Composto_Resina =  Calc_Composto_Resina(camisa_1, isopor);
-        }
-
         public Acabamento()
         {
 
         }
-
+        public Acabamento(Camisa camisa_1, Isopor isopor)
+        {
+           this.Composto_Resina =  Calc_Composto_Resina(camisa_1, isopor);
+        }
         private decimal Calc_Composto_Resina(Camisa c_1, Isopor isopor)
         {
             decimal ext_1_quadrado = Calculo.Eleva_Ao_Quadrado(c_1.Externa + 1);
@@ -37,7 +34,7 @@ namespace Air_Sleeves.Model
         public void CalculaValores(Camisa camisa_1, Isopor isopor)
         {
             LimpaTotais();
-            this.Composto_Resina = Calc_Composto_Resina(camisa_1, isopor);
+            Composto_Resina = Calc_Composto_Resina(camisa_1, isopor);
             CalculaItens();
         }
 
