@@ -9,7 +9,7 @@ namespace Air_Sleeves.ViewModel
     public class ViewModel : BaseInotifyPropertyChanged
     {
         public Peca Peca { get; set; }
-        public Peca AuxPeca {  get; set; }
+        public Peca AuxPeca { get; set; }
         public bool CalculaSegundaCamisa { get; set; }
         public bool CalculaEva { get; set; }
         public bool CalculaIsopor { get; set; }
@@ -66,7 +66,7 @@ namespace Air_Sleeves.ViewModel
 
         public Command ExecutaSimulacao { get; set; }
 
-        public Command Limpar { get; set; }
+        public Command Reset { get; set; }
 
         public ViewModel()
         {
@@ -85,11 +85,15 @@ namespace Air_Sleeves.ViewModel
                 return Validacao.Camisa_1(AuxPeca.Camisas_1);
             });
 
-            Limpar = new Command(Clear, () => { return true; });
+            Reset = new Command(ResetarComponentes, () => { return true; });
         }
         private void simula_Orcamento()
         {
             Clear();
+
+            Peca.Preco_Embalagem = AuxPeca.Preco_Embalagem;
+            Peca.Preco_Anel = AuxPeca.Preco_Anel;
+            Peca.Preco_Isopor = AuxPeca.Preco_Isopor;
 
             //Camisa 1
             Peca.Camisas_1.Interna = AuxPeca.Camisas_1.Interna;
@@ -189,7 +193,7 @@ namespace Air_Sleeves.ViewModel
 
                     Peca.Colagem.CalculaColagem();
                     Peca.Selagem.CalculaSelagem();
-                    
+
                 }
 
                 #endregion
@@ -216,7 +220,7 @@ namespace Air_Sleeves.ViewModel
                     Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 5).ToList<Material>(), 2);
                     Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 6).ToList<Material>(), 10);
                     Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 7).ToList<Material>(), 2);
-                    
+
                     Peca.Acabamento.CalculaValores(Peca.Camisas_1, Peca.Selagem);
                 }
 
@@ -226,6 +230,17 @@ namespace Air_Sleeves.ViewModel
                 Peca.CalculaValores();
 
             }
+        }
+
+        private void ResetarComponentes()
+        {
+            CalculaSegundaCamisa = CalculaEva = CalculaIsopor = CalculaFilamento = CalculaAcabamento = true;
+            AuxPeca.Preco_Anel = AuxPeca.Preco_Embalagem = AuxPeca.Preco_Isopor = 0;
+
+            AuxPeca.Camisas_1.Voltas = 10;
+            AuxPeca.Camisas_2.Voltas = 8;
+            AuxPeca.Selagem.Voltas = 2;
+            AuxPeca.Camisas_1.Interna = AuxPeca.Camisas_1.Externa = AuxPeca.Camisas_1.Comprimento = 0;
         }
 
         private void Clear()
