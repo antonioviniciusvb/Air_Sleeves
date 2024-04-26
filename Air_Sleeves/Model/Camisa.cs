@@ -44,8 +44,8 @@ namespace Air_Sleeves.Model
 
         private void OnVoltasChanged()
         {
-            if(Voltas <= 0 || Voltas > 40)
-                Voltas = 0;
+            if(Voltas <= 0 || Voltas > 50)
+                Voltas = 1;
         }
 
         #region Cadarco
