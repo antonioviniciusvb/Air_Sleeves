@@ -14,7 +14,6 @@ namespace Air_Sleeves.ViewModel
         public bool CalculaEva { get; set; }
         public bool CalculaIsopor { get; set; }
         public bool CalculaFilamento { get; set; }
-        public bool CalculaAcabamento { get; set; }
 
         #region Visibilidade dos Componentes
         public Visibility ExibirSegundaCamisa
@@ -53,15 +52,6 @@ namespace Air_Sleeves.ViewModel
 
         }
 
-        public Visibility ExibirAcabamento
-        {
-            get
-            {
-                return CalculaAcabamento ? Visibility.Visible : Visibility.Collapsed;
-            }
-
-        }
-
         #endregion
 
         public Command ExecutaSimulacao { get; set; }
@@ -70,7 +60,7 @@ namespace Air_Sleeves.ViewModel
 
         public ViewModel()
         {
-            CalculaSegundaCamisa = CalculaEva = CalculaIsopor = CalculaFilamento = CalculaAcabamento = true;
+            CalculaSegundaCamisa = CalculaEva = CalculaIsopor = CalculaFilamento = true;
 
             Peca = new Peca();
             AuxPeca = new Peca();
@@ -213,16 +203,14 @@ namespace Air_Sleeves.ViewModel
 
                 #region Acabamento
 
-                if (CalculaAcabamento)
-                {
-                    Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
-                    Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 4).ToList<Material>(), 20);
-                    Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 5).ToList<Material>(), 2);
-                    Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 6).ToList<Material>(), 10);
-                    Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 7).ToList<Material>(), 2);
+                Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
+                Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 4).ToList<Material>(), 20);
+                Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 5).ToList<Material>(), 2);
+                Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 6).ToList<Material>(), 10);
+                Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 7).ToList<Material>(), 2);
 
-                    Peca.Acabamento.CalculaValores(Peca.Camisas_1, Peca.Selagem);
-                }
+                Peca.Acabamento.CalculaValores(Peca.Camisas_1, Peca.Selagem);
+
 
                 #endregion
 
@@ -234,7 +222,7 @@ namespace Air_Sleeves.ViewModel
 
         private void ResetarComponentes()
         {
-            CalculaSegundaCamisa = CalculaEva = CalculaIsopor = CalculaFilamento = CalculaAcabamento = true;
+            CalculaSegundaCamisa = CalculaEva = CalculaIsopor = CalculaFilamento = true;
             AuxPeca.Preco_Anel = AuxPeca.Preco_Embalagem = AuxPeca.Preco_Isopor = 0;
 
             AuxPeca.Camisas_1.Voltas = 10;
