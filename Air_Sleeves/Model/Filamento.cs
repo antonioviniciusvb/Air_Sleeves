@@ -1,21 +1,16 @@
-﻿using System;
-using System.Linq;
-using System.Text;
-using PropertyChanged;
-using Air_Sleeves.Util;
+﻿using Air_Sleeves.Util;
 
 
 namespace Air_Sleeves.Model
 {
-    public class Filamento:DetalhesMaterial
+    public class Filamento:Camisa
     {
+        const decimal fatorFilamento = 0.0000014M;
 
-        decimal ft_Filamento = 0.0000014M;
-
-        public Filamento(Camisa camisa_1, Camisa camisa_3, decimal valor_isopor)
+        public Filamento(Camisa camisa_1, Isopor isopor)
         {
-            this.Filamento_A = Calc_Filamento_A(camisa_3, valor_isopor);
-            this.Filamento_B = Calc_Filamento_B(camisa_1, camisa_3, valor_isopor);
+            FilamentoA = CalculaFilamentoA(isopor);
+            FilamentoB = CalculaFilamentoB(camisa_1, isopor);
         }
 
         public Filamento()
@@ -23,83 +18,69 @@ namespace Air_Sleeves.Model
 
         }
 
-        public decimal Filamento_A { get; set; }
-        public decimal Filamento_B { get; set; }
+        public decimal FilamentoA { get; set; }
+        public decimal FilamentoB { get; set; }
 
-
-        private decimal Calc_Filamento_A(Camisa c, decimal vlr_isopor)
+        private decimal CalculaFilamentoA(Isopor isopor)
         {
-            decimal ext_quadrado = Calculo.Eleva_Ao_Quadrado(c.Externa);
-            decimal int_quadrado = Calculo.Eleva_Ao_Quadrado(c.Interna);
-
-            //return Calculo.Multiplica((Calculo.pi / 4), vlr_isopor, (ext_quadrado - int_quadrado), ft_Filamento, 3);
+            decimal ext_quadrado = Calculo.Eleva_Ao_Quadrado(isopor.Externa);
+            decimal int_quadrado = Calculo.Eleva_Ao_Quadrado(isopor.Interna);
 
             //Apenas para testes
-            return Calculo.Multiplica((Calculo.pi / 4), 60, (ext_quadrado - int_quadrado), ft_Filamento, 3);
+            return Calculo.Multiplica((Calculo.pi / 4), 60, (ext_quadrado - int_quadrado), fatorFilamento, 3);
         }
 
-        private decimal Calc_Filamento_B(Camisa c_1, Camisa c_3, decimal vlr_isopor)
+        private decimal CalculaFilamentoB(Camisa camisa1, Isopor isopor)
         {
-            decimal ext_1_quadrado = Calculo.Eleva_Ao_Quadrado(c_1.Externa + 4);
-            decimal ext_3_quadrado = Calculo.Eleva_Ao_Quadrado(c_3.Externa);
+            decimal ext_1_quadrado = Calculo.Eleva_Ao_Quadrado(camisa1.Externa + 4);
+            decimal ext_3_quadrado = Calculo.Eleva_Ao_Quadrado(isopor.Externa);
 
-            return Calculo.Multiplica((Calculo.pi / 4), c_1.Comprimento, (ext_1_quadrado - ext_3_quadrado), ft_Filamento, 3);
+            return Calculo.Multiplica((Calculo.pi / 4), camisa1.Comprimento, (ext_1_quadrado - ext_3_quadrado), fatorFilamento, 3);
         }
-
-        private decimal Calc_Composto_Resina_Fio()
+        private decimal CalculaCompostoResinaFio()
         {
-             return this.Filamento_A + this.Filamento_B;
+             return this.FilamentoA + this.FilamentoB;
         }
-
-        private decimal Calc_Composto_Resina()
+        private decimal CalculaCompostoResina()
         {
             return (this.Composto_Resina_Fio - this.Peso_Fio) + 0.7M;
         }
-
-        public void calc_Valores_Filamento()
+        public void CalculaValores(Camisa camisa_1, Isopor isopor)
         {
-            limpaTotais();
+            LimpaTotais();
 
-            this.Composto_Resina_Fio = Calc_Composto_Resina_Fio();
+            FilamentoA = CalculaFilamentoA(isopor);
+            FilamentoB = CalculaFilamentoB(camisa_1, isopor);
 
-            calc_Valores_Fio();
-            
-            this.Composto_Resina = Calc_Composto_Resina();
-            
-            Calc_Itens();
-            
+            Composto_Resina_Fio = CalculaCompostoResinaFio();
+
+            CalculaValoresFio();
+
+            //Isso irá aumentar o custo em 10% de todos os produtos, exceto o FIO
+            Composto_Resina = Calculo.Adiciona_Percentual(CalculaCompostoResina(), 10, 3);
+
+            CalculaItens();
         }
 
-        public void calc_Valores_Filamento(Camisa camisa_1, Camisa camisa_3, decimal valor_isopor)
-        {
-            limpaTotais();
-
-            this.Filamento_A = Calc_Filamento_A(camisa_3, valor_isopor);
-            this.Filamento_B = Calc_Filamento_B(camisa_1, camisa_3, valor_isopor);
-
-            this.Composto_Resina_Fio = Calc_Composto_Resina_Fio();
-
-            calc_Valores_Fio();
-
-            this.Composto_Resina = Calc_Composto_Resina();
-
-            Calc_Itens();
-        }
-
-        private void calc_Valores_Fio()
+        private void CalculaValoresFio()
         {
             //Fio
             int id = 12;
             var preco_Fio = preco_Material(id);
 
-            this.Peso_Fio = Calculo.Multiplica(this.Composto_Resina_Fio, 0.6M, 3);
-            this.Peso_Total = Peso_Total + Peso_Fio;
+            Peso_Fio = Calculo.Multiplica(this.Composto_Resina_Fio, 0.6M, 3);
+            Peso_Total = Peso_Total + Peso_Fio;
 
 
-            this.Preco_Fio = Calculo.Multiplica(this.Peso_Fio, preco_Fio, 2);
-            this.Preco_Total = this.Preco_Total + Preco_Fio;
+            Preco_Fio = Calculo.Multiplica(this.Peso_Fio, preco_Fio, 2);
+            Preco_Total = this.Preco_Total + Preco_Fio;
         }
 
-
+        public override void LimpaValores()
+        {
+            base.LimpaValores();
+            FilamentoA = 0;
+            FilamentoB = 0;
+        }
     }
 }

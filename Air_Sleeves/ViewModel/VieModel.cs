@@ -1,135 +1,239 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using Air_Sleeves.Model;
 using Air_Sleeves.Dal;
 using Air_Sleeves.Util;
-using System.ComponentModel;
+using System.Windows;
 
 namespace Air_Sleeves.ViewModel
 {
-    public class ViewModel:BaseInotifyPropertyChanged
+    public class ViewModel : BaseInotifyPropertyChanged
     {
-        private Camisa _c1, _c2, _c3;
-        private Filamento _fil;
-        private Acabamento _acabamento;
-        private Eva _eva;
-        private Peça _peca;
-        private bool adicionaMaterias = false;
+        public Peca Peca { get; set; }
+        public Peca AuxPeca { get; set; }
+        public bool CalculaSegundaCamisa { get; set; }
+        public bool CalculaEva { get; set; }
+        public bool CalculaIsopor { get; set; }
+        public bool CalculaFilamento { get; set; }
+
+        #region Visibilidade dos Componentes
+        public Visibility ExibirSegundaCamisa
+        {
+            get
+            {
+                return CalculaSegundaCamisa ? Visibility.Visible : Visibility.Collapsed;
+            }
+
+        }
+
+        public Visibility ExibirEva
+        {
+            get
+            {
+                return CalculaEva ? Visibility.Visible : Visibility.Collapsed;
+            }
+
+        }
+
+        public Visibility ExibirIsopor
+        {
+            get
+            {
+                return CalculaIsopor ? Visibility.Visible : Visibility.Collapsed;
+            }
+
+        }
+
+        public Visibility ExibirFilamento
+        {
+            get
+            {
+                return CalculaFilamento ? Visibility.Visible : Visibility.Collapsed;
+            }
+
+        }
+
+        #endregion
 
         public Command ExecutaSimulacao { get; set; }
 
+        public Command Reset { get; set; }
+
         public ViewModel()
         {
+            CalculaSegundaCamisa = CalculaEva = CalculaIsopor = CalculaFilamento = true;
 
-            //Camisa 1
-            _c1 = new Camisa(0, 0, 0, 1);
-            _c2 = new Camisa(0, 0, 0, 2);
-            _eva = new Eva();
-            _c3 = new Camisa(0, 0, 0, 3);
-            _fil = new Filamento();
-            _acabamento = new Acabamento();
-           _peca = new Peça(_c1, _c2, _c3, _fil, _acabamento, _eva);
+            Peca = new Peca();
+            AuxPeca = new Peca();
 
-
-            ExecutaSimulacao = new Command(simula_Orcamento, () => { return Util.Validacao.Camisa_1(_peca.Camisas_1); });
+            AuxPeca.Camisas_1.Voltas = 10;
+            AuxPeca.Camisas_2.Voltas = 8;
+            AuxPeca.Selagem.Voltas = 2;
 
 
+            ExecutaSimulacao = new Command(simula_Orcamento, () =>
+            {
+                return Validacao.Camisa_1(AuxPeca.Camisas_1);
+            });
+
+            Reset = new Command(ResetarComponentes, () => { return true; });
         }
-
-       
-
-        public Peça Peca
-        {
-            get { return _peca; }
-        }
-
-
         private void simula_Orcamento()
         {
-            //Adiciona 7 na interna, para a 2º camisa
-            //_c2 = new Camisa(_c1.Interna + 7, _c1.Externa, _c1.Comprimento, 2);
-            _peca.Camisas_2.Interna = _peca.Camisas_1.Interna + 7;
-            _peca.Camisas_2.Externa = _peca.Camisas_1.Externa;
-            _peca.Camisas_2.Comprimento = _peca.Camisas_1.Comprimento;
+            Clear();
 
+            Peca.Preco_Embalagem = AuxPeca.Preco_Embalagem;
+            Peca.Preco_Anel = AuxPeca.Preco_Anel;
+            Peca.Preco_Isopor = AuxPeca.Preco_Isopor;
 
-            //Adiciona 11 na interna, diminui 9 interna, diminui 20 interna
-            //_c3 = new Camisa(_c1.Interna + 11, _c1.Externa - 9, _c1.Comprimento - 20, 3);
+            //Camisa 1
+            Peca.Camisas_1.Interna = AuxPeca.Camisas_1.Interna;
+            Peca.Camisas_1.Externa = AuxPeca.Camisas_1.Externa;
+            Peca.Camisas_1.Comprimento = AuxPeca.Camisas_1.Comprimento;
+            Peca.Camisas_1.Voltas = AuxPeca.Camisas_1.Voltas;
 
-            _peca.Camisas_3.Interna = _peca.Camisas_1.Interna + 11;
-            _peca.Camisas_3.Externa = _peca.Camisas_1.Externa - 9;
-            _peca.Camisas_3.Comprimento = _peca.Camisas_1.Comprimento - 20;
+            //Acrescenta 50 mm caso seja Orçamento
+            if (Peca.Type == false)
+                Peca.Camisas_1.Comprimento += 50;
 
-            _peca.Eva.calc_Valores_Eva(_peca.Camisas_1.Interna, _peca.Camisas_1.Comprimento);
-            
+            if (CalculaSegundaCamisa)
+            {
+                Peca.Camisas_2.Interna = Peca.Camisas_1.Interna + 7;
+                Peca.Camisas_2.Externa = Peca.Camisas_1.Externa;
+                Peca.Camisas_2.Comprimento = Peca.Camisas_1.Comprimento;
+                Peca.Camisas_2.Voltas = AuxPeca.Camisas_2.Voltas;
+            }
+            else
+                Peca.Camisas_2.Interna = Peca.Camisas_2.Externa =
+                Peca.Camisas_2.Comprimento = Peca.Camisas_2.Voltas = 0;
+
+            if (CalculaIsopor)
+            {
+                Peca.Selagem.Interna = Peca.Camisas_1.Interna + 10;
+                Peca.Selagem.Externa = Peca.Camisas_1.Externa - 8;
+                Peca.Selagem.Comprimento = Peca.Camisas_1.Comprimento;
+                Peca.Selagem.Voltas = AuxPeca.Selagem.Voltas;
+
+                Peca.Colagem.Interna = Peca.Camisas_1.Interna + 10;
+                Peca.Colagem.Externa = Peca.Camisas_1.Externa - 8;
+                Peca.Colagem.Comprimento = Peca.Camisas_1.Comprimento;
+                Peca.Colagem.Voltas = AuxPeca.Colagem.Voltas;
+            }
+            else
+                Peca.Selagem.Interna = Peca.Selagem.Externa =
+                Peca.Selagem.Comprimento = Peca.Selagem.Voltas =
+                Peca.Colagem.Interna = Peca.Colagem.Externa =
+                Peca.Colagem.Comprimento = Peca.Colagem.Voltas = 0;
 
             using (var contexto = new EfContext())
             {
-                decimal vlr_Isopor = (decimal)contexto.material.Where(x => x.Id == 10).Select(x => x.Preco).Distinct().Sum();
-
-                if (adicionaMaterias == false)
+                #region EVA
+                if (CalculaEva)
                 {
-                    adicionaMaterias = true;
 
-                    #region 1ª Camisa
-                    _peca.Camisas_1.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
+                    Peca.Eva.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
+                    Peca.Eva.AddMaterial(contexto.material.Where(x => x.Id == 4).ToList<Material>(), 20);
+                    Peca.Eva.AddMaterial(contexto.material.Where(x => x.Id == 14).ToList<Material>(), 0);
 
-                    _peca.Camisas_1.AddMaterial(contexto.material.Where(x => x.Id == 2).ToList<Material>(), 80);
+                    Peca.Eva.Interna = Peca.Camisas_1.Interna + 3;
+                    Peca.Eva.Comprimento = Peca.Camisas_1.Comprimento;
 
-                    _peca.Camisas_1.AddMaterial(contexto.material.Where(x => x.Id == 3).ToList<Material>(), 5);
-
-                    _peca.Camisas_1.AddMaterial(contexto.material.Where(x => x.Id == 11).ToList<Material>(), 0);
-                    #endregion
-
-                    #region 2ª Camisa
-                    _peca.Camisas_2.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
-                    _peca.Camisas_2.AddMaterial(contexto.material.Where(x => x.Id == 4).ToList<Material>(), 20);
-                    _peca.Camisas_2.AddMaterial(contexto.material.Where(x => x.Id == 11).ToList<Material>(), 0);
-
-                    #endregion
-
-                    #region 3ª Camisa
-                    _peca.Camisas_3.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 95);
-                    _peca.Camisas_3.AddMaterial(contexto.material.Where(x => x.Id == 4).ToList<Material>(), 20);
-                    _peca.Camisas_3.AddMaterial(contexto.material.Where(x => x.Id == 6).ToList<Material>(), 5);
-                    _peca.Camisas_3.AddMaterial(contexto.material.Where(x => x.Id == 11).ToList<Material>(), 0);
-                    
-                    #endregion
-
-                    #region Filamento
-                    _peca.Filamento.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
-                    _peca.Filamento.AddMaterial(contexto.material.Where(x => x.Id == 2).ToList<Material>(), 80);
-                    _peca.Filamento.AddMaterial(contexto.material.Where(x => x.Id == 3).ToList<Material>(), 5);
-                    _peca.Filamento.AddMaterial(contexto.material.Where(x => x.Id == 7).ToList<Material>(), 2);
-                    _peca.Filamento.AddMaterial(contexto.material.Where(x => x.Id == 12).ToList<Material>(), 0);
-                    #endregion
-
-                    #region Acabamento
-                    _peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
-                    _peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 4).ToList<Material>(), 20);
-                    _peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 5).ToList<Material>(), 2);
-                    _peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 6).ToList<Material>(), 10);
-                    _peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 7).ToList<Material>(), 2);
-                    #endregion
+                    Peca.Eva.CalculaValores();
 
                 }
 
-                _peca.Camisas_1.Calc_Valores_Camisa();
-                _peca.Camisas_2.Calc_Valores_Camisa();
-                _peca.Camisas_3.Calc_Valores_Camisa();
-                _peca.Filamento.calc_Valores_Filamento(_peca.Camisas_1, _peca.Camisas_3, vlr_Isopor);
-                _peca.Acabamento.calc_Valores_Acabamento(_peca.Camisas_1, _peca.Camisas_3);
+                #endregion
 
-                _peca.Quantidade = 1;
-                _peca.Calcula_Valores_Pecas();
+                #region 1ª Camisa
+                Peca.Camisas_1.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
+
+                Peca.Camisas_1.AddMaterial(contexto.material.Where(x => x.Id == 2).ToList<Material>(), 80);
+
+                Peca.Camisas_1.AddMaterial(contexto.material.Where(x => x.Id == 3).ToList<Material>(), 5);
+
+                Peca.Camisas_1.AddMaterial(contexto.material.Where(x => x.Id == 11).ToList<Material>(), 0);
+                Peca.Camisas_1.CalculaValores();
+                #endregion
+
+                #region 2º Camisa
+                if (CalculaSegundaCamisa)
+                {
+                    #region 2ª Camisa
+                    Peca.Camisas_2.AddMaterial(contexto.material.Where(x => x.Id == 15).ToList<Material>(), 100);
+                    Peca.Camisas_2.AddMaterial(contexto.material.Where(x => x.Id == 16).ToList<Material>(), 20);
+                    Peca.Camisas_2.AddMaterial(contexto.material.Where(x => x.Id == 11).ToList<Material>(), 0);
+
+                    #endregion
+
+                    Peca.Camisas_2.CalculaValores();
+                }
+                #endregion
+
+                #region Isopor
+                if (CalculaIsopor)
+                {
+                    #region Isopor
+                    Peca.Colagem.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
+                    Peca.Colagem.AddMaterial(contexto.material.Where(x => x.Id == 16).ToList<Material>(), 20);
+                    Peca.Colagem.AddMaterial(contexto.material.Where(x => x.Id == 11).ToList<Material>(), 0);
+
+                    Peca.Selagem.AddMaterial(contexto.material.Where(x => x.Id == 15).ToList<Material>(), 100);
+                    Peca.Selagem.AddMaterial(contexto.material.Where(x => x.Id == 4).ToList<Material>(), 20);
+                    Peca.Selagem.AddMaterial(contexto.material.Where(x => x.Id == 11).ToList<Material>(), 0);
+                    #endregion
+
+                    Peca.Colagem.CalculaColagem();
+                    Peca.Selagem.CalculaSelagem();
+
+                }
+
+                #endregion
+
+                #region Filamento
+                if (CalculaFilamento)
+                {
+                    Peca.Filamento.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
+                    Peca.Filamento.AddMaterial(contexto.material.Where(x => x.Id == 2).ToList<Material>(), 80);
+                    Peca.Filamento.AddMaterial(contexto.material.Where(x => x.Id == 3).ToList<Material>(), 5);
+                    Peca.Filamento.AddMaterial(contexto.material.Where(x => x.Id == 7).ToList<Material>(), 2);
+                    Peca.Filamento.AddMaterial(contexto.material.Where(x => x.Id == 12).ToList<Material>(), 0);
+
+                    Peca.Filamento.CalculaValores(Peca.Camisas_1, Peca.Selagem);
+                }
+                #endregion
+
+                #region Acabamento
+
+                Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 1).ToList<Material>(), 100);
+                Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 4).ToList<Material>(), 20);
+                Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 5).ToList<Material>(), 2);
+                Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 6).ToList<Material>(), 10);
+                Peca.Acabamento.AddMaterial(contexto.material.Where(x => x.Id == 7).ToList<Material>(), 2);
+
+                Peca.Acabamento.CalculaValores(Peca.Camisas_1, Peca.Selagem);
+
+
+                #endregion
+
+                Peca.Quantidade = 1;
+                Peca.CalculaValores();
 
             }
+        }
 
+        private void ResetarComponentes()
+        {
+            CalculaSegundaCamisa = CalculaEva = CalculaIsopor = CalculaFilamento = true;
+            AuxPeca.Preco_Anel = AuxPeca.Preco_Embalagem = AuxPeca.Preco_Isopor = 0;
 
+            AuxPeca.Camisas_1.Voltas = 10;
+            AuxPeca.Camisas_2.Voltas = 8;
+            AuxPeca.Selagem.Voltas = 2;
+            AuxPeca.Camisas_1.Interna = AuxPeca.Camisas_1.Externa = AuxPeca.Camisas_1.Comprimento = 0;
+        }
+
+        private void Clear()
+        {
+            Peca.Limpar();
         }
     }
 }

@@ -1,33 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using PropertyChanged;
 using Air_Sleeves.Util;
 
 namespace Air_Sleeves.Model
 {
     public class Camisa: DetalhesMaterial
     {
-
-        public Camisa(decimal interna, decimal externa, decimal com, int numero_Camisa)
-        {
-            Interna = interna;
-            Externa = externa;
-            Comprimento = com;
-
-            this.num_Camisa = numero_Camisa;
-        }
-
-        public int num_Camisa { get; set; }
-    
         public decimal Interna { get; set; }
 
         public decimal Externa { get; set; }
 
         public decimal Comprimento { get; set; }
 
+        public decimal Voltas { get; set; }
+
+        public Camisa()
+        {
+        }
+
+        public Camisa(decimal interna, decimal externa, decimal comprimento)
+        {
+            Interna = interna;
+            Externa = externa;
+            Comprimento = comprimento;
+        }
 
         private void OnInternaChanged()
         {
@@ -47,28 +42,30 @@ namespace Air_Sleeves.Model
                 Comprimento = 0;
         }
 
+        private void OnVoltasChanged()
+        {
+            if(Voltas <= 0 || Voltas > 50)
+                Voltas = 1;
+        }
+
         #region Cadarco
-        private void Calc_MetrosCadarco()
+        public virtual void CalculaMetrosCadarco()
         {
-            decimal parametro_2 = num_Camisa != 3 ? this.Interna : this.Externa;
-            decimal parametro_3 = num_Camisa != 3 ? 100 : 1000;
+            decimal parametro_1 = Math.Round(Calculo.pi * Interna, 2);
 
-            this.Metros_Cadarco = Math.Ceiling((Calculo.pi * parametro_2 * (this.Comprimento / 32)) / parametro_3);
+            decimal parametro_2 = Math.Round(Comprimento / 40, 2);
+
+            Metros_Cadarco = Math.Ceiling((parametro_1 * parametro_2 * Voltas) / 1000);
         }
 
-        //private void Calc_Qntd_Bobinas()
-        //{
-        //    //há 50 metros de cardaço por bobina
-        //    this.Bobinas_Cadarco = Math.Round(this.Metros_Cadarco / 50, 2);
-        //}
-
-        private void Calc_Peso_Cadarco()
+        public virtual void CalculaPesoCadarco(decimal constante = 0.0075M)
         {
-            this.Peso_Cadarco = Calculo.Multiplica(this.Metros_Cadarco, 0.007M, 3);
-            this.Peso_Total = Peso_Total + Peso_Cadarco;
+            //Metros * Constante 0.0075
+            Peso_Cadarco = Calculo.Multiplica(Metros_Cadarco, constante, 3);
+            Peso_Total = Peso_Total + Peso_Cadarco;
         }
 
-        private void Calc_Preco_Cadarco()
+        public virtual void CalculaPrecoCadarco()
         {
             //Cardaço
             int id = 11;
@@ -76,31 +73,39 @@ namespace Air_Sleeves.Model
             //11 -- id cardaco
             var preco_Cadarco = preco_Material(id);
 
-            this.Preco_Cadarco = Calculo.DivideMultiplica(this.Metros_Cadarco, 50, preco_Cadarco, 2);
-            this.Preco_Total = this.Preco_Total + Preco_Cadarco;
+            Preco_Cadarco = Calculo.DivideMultiplica(Metros_Cadarco, 50, preco_Cadarco, 2);
+            Preco_Total = Preco_Total + Preco_Cadarco;
         }
 
-        private void Calc_Valores_Cadarco()
+        public virtual void CalculaValoresCadarco()
         {
-            Calc_MetrosCadarco();
-            Calc_Peso_Cadarco();
-            Calc_Preco_Cadarco();
-            //Calc_Qntd_Bobinas();
+            CalculaMetrosCadarco();
+            CalculaPesoCadarco();
+            CalculaPrecoCadarco();
         }
 
-        private void Calc_Composto()
+        public virtual void CalculaComposto(decimal fatorComposto = 0.0075M)
         {
             //Tenho que verificar pq muda da 3º camisa para as demais
-            decimal fatorComposto = num_Camisa != 3 ? 0.006M : 0.02M;
-            this.Composto_Resina = Calculo.Multiplica(this.Metros_Cadarco, fatorComposto, 3);
+             
+            Composto_Resina = Calculo.Multiplica(Metros_Cadarco, fatorComposto, 3);
         }
 
-        public void Calc_Valores_Camisa()
+        public virtual void CalculaValores()
         {
-            limpaTotais();
-            Calc_Valores_Cadarco();
-            Calc_Composto();
-            Calc_Itens();
+            LimpaTotais();
+            CalculaValoresCadarco();
+            CalculaComposto();
+            CalculaItens();
+        }
+
+        public override void LimpaValores()
+        {
+            base.LimpaValores();
+            Interna = 0;
+            Externa = 0;
+            Comprimento = 0;     
+            Voltas = 0;
         }
 
         #endregion

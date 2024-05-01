@@ -1,41 +1,27 @@
 ﻿using System;
-using System.Linq;
-using System.Text;
-using PropertyChanged;
 using Air_Sleeves.Util;
-using System.ComponentModel;
 
 namespace Air_Sleeves.Model
 {
-    public class Eva:INotifyPropertyChanged
+    public class Eva: Camisa
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public Eva()
-        {
-        }
-
-        private void calc_Eva()
-        {
-            this.Preco =  Math.Round(((Largura * Comprimento * 13.0M) / 2.5M) / 1000.0M, 2);
-        }
-
-        private void calc_Largura(decimal c_interna)
-        {
-            this.Largura =  Math.Round(((c_interna * Calculo.pi) + 40) / 1000.0M,3);
-        }
-
-        public void calc_Valores_Eva(decimal interna, decimal comprimento)
-        {
-            calc_Largura(interna);
-            this.Comprimento = comprimento;
-            calc_Eva();
-        }
-
-
-
-        public decimal Largura { get; set; }
-        public decimal Comprimento { get; set; }
+        decimal fatorPesoResina;
         public decimal Preco { get; set; }
+
+        public void CalculaComposto()
+        {
+            decimal parametro_1 = Math.Round(Calculo.pi * Interna, 2);         
+            fatorPesoResina = Math.Round((parametro_1 * Comprimento) / 1000, 2);
+
+            this.Composto_Resina = Math.Round(fatorPesoResina * 0.0002M, 3);
+        }
+
+        public override void CalculaValores()
+        {
+            LimpaTotais();
+            CalculaComposto();
+            CalculaItens();
+            CalculaEVA(fatorPesoResina);
+        }      
     }
 }

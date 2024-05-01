@@ -27,19 +27,24 @@ namespace Air_Sleeves.Dal
             //Caso não tenha itens, preencha com valores default
             if (!(material.Any()))
             {
-                material.Add(new Material { Id = 1, Id_Und_Medida = 1, Nome = "Resina", Preco = 40.00F });
-                material.Add(new Material { Id = 2, Id_Und_Medida = 1, Nome = "HL918", Preco = 60.00F });
-                material.Add(new Material { Id = 3, Id_Und_Medida = 1, Nome = "A78", Preco = 189.00F });
-                material.Add(new Material { Id = 4, Id_Und_Medida = 1, Nome = "HT231", Preco = 53.00F });
-                material.Add(new Material { Id = 5, Id_Und_Medida = 1, Nome = "ANTI BOLHA", Preco = 396.00F });
-                material.Add(new Material { Id = 6, Id_Und_Medida = 1, Nome = "K10", Preco = 72.00F });
+                material.Add(new Material { Id = 1, Id_Und_Medida = 1, Nome = "Resina 102", Preco = 109.00F });
+
+                material.Add(new Material { Id = 2, Id_Und_Medida = 1, Nome = "HL918", Preco = 87.00F });
+                material.Add(new Material { Id = 3, Id_Und_Medida = 1, Nome = "A78", Preco = 177.00F });
+                material.Add(new Material { Id = 4, Id_Und_Medida = 1, Nome = "HT231", Preco = 82.00F });
+                material.Add(new Material { Id = 5, Id_Und_Medida = 1, Nome = "ANTI BOLHA", Preco = 370.00F });
+                material.Add(new Material { Id = 6, Id_Und_Medida = 1, Nome = "K10", Preco = 58.00F });
                 material.Add(new Material { Id = 7, Id_Und_Medida = 1, Nome = "PIGMENTO", Preco = 65.00F });
-                material.Add(new Material { Id = 8, Id_Und_Medida = 2, Nome = "COLA", Preco = 7.00F });
-                material.Add(new Material { Id = 9, Id_Und_Medida = 1, Nome = "ANEL", Preco = 14.00F });
-                material.Add(new Material { Id = 10, Id_Und_Medida = 1, Nome = "ISOPOR", Preco = 426.00F });
-                material.Add(new Material { Id = 11, Id_Und_Medida = 4, Nome = "CADARÇO", Preco = 26.00F });
-                material.Add(new Material { Id = 12, Id_Und_Medida = 4, Nome = "FIO", Preco = 15.00F });
-                material.Add(new Material { Id = 13, Id_Und_Medida = 1, Nome = "EMBALAGEM", Preco = 26.00F });
+                material.Add(new Material { Id = 8, Id_Und_Medida = 2, Nome = "COLA", Preco = 5.00F });
+                material.Add(new Material { Id = 9, Id_Und_Medida = 1, Nome = "ANEL", Preco = 0.00F });
+                material.Add(new Material { Id = 10, Id_Und_Medida = 1, Nome = "ISOPOR", Preco = 0.00F });
+                material.Add(new Material { Id = 11, Id_Und_Medida = 4, Nome = "CADARÇO", Preco = 30.00F });
+                material.Add(new Material { Id = 12, Id_Und_Medida = 4, Nome = "FIO", Preco = 25.00F });
+                material.Add(new Material { Id = 13, Id_Und_Medida = 1, Nome = "EMBALAGEM", Preco = 0.00F });
+                material.Add(new Material { Id = 14, Id_Und_Medida = 1, Nome = "EVA", Preco = 8.00F });
+                material.Add(new Material { Id = 15, Id_Und_Medida = 1, Nome = "Resina 101F", Preco = 114.00F });
+                material.Add(new Material { Id = 16, Id_Und_Medida = 1, Nome = "HT356", Preco = 108.00F });
+
             }
 
             if (!(user.Any()))
