@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.Net;
 using Air_Sleeves.Properties;
 using System.Reflection;
+using System.IO;
 
 namespace Air_Sleeves
 {
@@ -28,6 +29,8 @@ namespace Air_Sleeves
                 new NetworkCredential(Settings.Default.user, Settings.Default.pass),
                 Assembly.GetExecutingAssembly());
             AutoUpdater.Synchronous = true;
+            AutoUpdater.DownloadPath = Path.GetTempPath();
+            AutoUpdater.Mandatory = true;
             AutoUpdater.UpdateMode = Mode.Forced;
             AutoUpdater.TopMost = true;
             AutoUpdater.ExecutablePath = "setup.exe";
